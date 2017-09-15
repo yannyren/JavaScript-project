@@ -1,0 +1,26 @@
+.navbutton {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    font-size: 24px;
+    padding: 15px 25px;
+    float: left;
+    border: 1px solid green;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: #4CAF50;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.navbutton:hover {
+    background-color: #3e8e41
+}
+
+.navbutton:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
