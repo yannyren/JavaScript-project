@@ -47,51 +47,8 @@ var PieChart = function(title, data) {
         }
       },
       
-      series: [
-          {
-            name:"shares" 
-          },
-          {
-
-          }
-      ]
-    });
-    
-    };
-
-
-   
-
-// Build the chart
-Highcharts.chart('container', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Browser market shares. January, 2015 to May, 2015'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                },
-                connectorColor: 'silver'
-            }
-        }
-    },
     series: [{
-        name: 'Brands',
+        name: 'Shares',
         data: [
             {
                 "name": "Fusionex",
@@ -182,7 +139,8 @@ Highcharts.chart('container', {
                 "buyPrice": 9.00,
                 "pastCloseOfDayPrices": [115.00, 115.00, 115.50, 115.90, 116.30, 116.40, 116.80],
                 "buyDate":"2014-04-04"
-              }
-        ]
-    }]
-});
+              }]
+           }]
+
+    })
+}
