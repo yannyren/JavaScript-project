@@ -1,3 +1,12 @@
+html {
+    font-family: Geneva;
+  }
+  
+  #companylogo {
+    height: 150px; 
+    width: 180px;
+  }
+
 .navbutton {
     position: absolute;
     top: 20px;
