@@ -4,4 +4,4 @@ function app() {
 
 }
 
-window.addEventListener('load', app);ß
+window.addEventListener('load', app);
