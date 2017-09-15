@@ -1,0 +1,9 @@
+Scheme:
+
+(i) checkout -b feature/blah
+(ii) work
+(iii) git merge develop
+(iv) fix any conflicts
+(v) git checkout develop
+(vi) git merge feature/blah
+(vii) fix any conflicts
