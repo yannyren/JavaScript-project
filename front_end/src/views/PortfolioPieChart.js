@@ -1,18 +1,3 @@
- // Radialize the colors
-Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-    return {
-        radialGradient: {
-            cx: 0.5,
-            cy: 0.3,
-            r: 0.7
-        },
-        stops: [
-            [0, color],
-            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-        ]
-    };
-});
-
 //Build the chart
 // var PieChart = function(title, data)
 var PieChart = function() {
@@ -28,7 +13,7 @@ var PieChart = function() {
         renderTo: container
       },
       title: { 
-        text: 'Portfolio Analysis'
+        text: 'Portfolio Summary'
       },
       credits: {
         enabled: false
@@ -50,47 +35,49 @@ var PieChart = function() {
           }
         }
       },
-      
-    series: [{
+      series: [{
         name: 'Shares',
         data: [
-            {
-                name: "Fusionex",
-                epic: "FXI",
-                price: 120.00,
-                quantity: 2000, 
-                y: 240000 //price * quantity
-                //different color from the default theme??
-                
-              },
-              {
-                name: "Empiric Student Prop",
-                epic: "ESP",
-                price: 112.00,
-                quantity: 3500,
-                y: 392000,
-                sliced: true
-               
-              },
-              {
-                name: "Worldpay",
-                epic: "WGP",
-                price: 301.00,
-                quantity: 1000,
-                y: 310000
+          {
+            name: "Fusionex",
+            y: 240000 //price * quantity
+          },
+          {
+            name: "Empiric Student Prop",
+            y: 392000,
+            sliced: true,
+            selected: true
           
-              },
-              {
-                name: "Pets At Home",
-                epic:"PETS",
-                price: 247.40,
-                quantity: 2500,
-                y: 618500
-             
-              }
-              
-          ]
-           }]
+          },
+          {
+            name: "Worldpay",
+            y: 310000
+      
+          },
+          {
+            name: "Pets At Home",
+            y: 618500
+        
+          }
+          
+        ]
+      }]
 
-    })
+})
+
+    // Radialize the colors
+    //code needed be scrutinised, check with Highchart website
+    chart.getOptions().colors = Highcharts.map(chart.getOptions().colors, function (color) {
+      return { 
+        radialGradient: {
+          cx: 0.5,
+          cy: 0.3,
+          r: 0.7
+        },
+        stops: [
+          [0, color],
+          [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+        ]
+      };
+    });
 }
