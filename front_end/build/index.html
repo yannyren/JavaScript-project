@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stock Overflow</title>
+    <!-- <link rel="icon" href="./src/public/images/dollar.jpg">
+    <link rel="stylesheet" type="text/css" href="./src/public/styles.css" media="screen"> -->
+    <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>    
+    <script src="bundle.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <header>
+        <img id='companylogo' src="./src/public/images/dollar.jpg"  alt="Company Logo">
+        <h1>Stock Overflow</h1>
+    </header>
+
+
+
+    <button id='overviewbtn' class="navbutton" type="button">overview</button>
+    <button id='detailsbtn' class="navbutton" type="button">details</button>
+        
+    <div id="overviewpage" class="pageview">
+            <h1>Over View Section</h1>
+            <div id="pieChart"></div>    
+    </div>
+
+
+       
+    <div id="detailspage" class="pageview">
+            <h1>Detail Section</h1>
+            <ul id="portfolio-list"></ul>
+            <ul id="news-feed"></ul>
+    </div>
+
+</body>
+
+</html>

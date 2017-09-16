@@ -1,4 +1,5 @@
-//Build the chart
+
+  //Build the chart
 // var PieChart = function(title, data)
 var PieChart = function() { 
 
@@ -17,7 +18,6 @@ PieChart.prototype.render = function(stockData) {
       }
     };
 
-    
     var chart = new Highcharts.Chart({
       chart: {
         plotBackgroundColor: null,
@@ -81,7 +81,7 @@ PieChart.prototype.render = function(stockData) {
 
     // Radialize the colors
     //code needed be scrutinised, check with Highchart website
-    Highcharts.getOptions().colors = Highcharts.map(chart.getOptions().colors, function (color) {
+    chart.getOptions().colors = Highcharts.map(chart.getOptions().colors, function (color) {
       return { 
         radialGradient: {
           cx: 0.5,
