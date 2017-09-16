@@ -2,8 +2,10 @@ Scheme:
 
 (i) checkout -b feature/blah
 (ii) work
-(iii) git merge develop
-(iv) fix any conflicts
-(v) git checkout develop
-(vi) git merge feature/blah
-(vii) fix any conflicts
+(iii) git add
+(iv) git commit -m "bla bla bla"
+(v) git merge develop
+(vi) fix any conflicts
+(vii) git checkout develop
+(viii) git merge feature/blah
+(ix) fix any conflicts
