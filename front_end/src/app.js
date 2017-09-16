@@ -1,20 +1,19 @@
-var AjaxRequest = require('/services/ajax_request.js');
-var PortfolioView = require('/views/portfolio_view.js');
-var PieChart = require('/views/portfolioPieChart_view.js')
-var NewsFeedView = require('/views/portfolio_view.js');
+var portfolioView = new PortfolioView();
+var seedData = new AjaxRequest("http://localhost:3001/");
+seedData.get(portfolioView.render);
 
-function app() {
-    var portfolioView = new PortfolioView();
-    var seedData = new AjaxRequest("http://localhost:3001/");
-    seedData.get(portfolioView.render);
+var overviewbtn = document.getElementById('overviewbtn');
+overviewbtn.addEventListener('click', function() {
 
-    var portfolioPieChart = new PieChart();
-    seedData.get(PieChart.render);
+})
 
-    // docs are quite the saga to go through...
-    // var newsFeedView = new NewsFeedView();
-    // var newsItems = new AjaxRequest( link to the Twitter API here );
-    // newsItems.get(newsFeedView.render);
+var detailsbtn = document.getElementById('detailsbtn')
+
+detailsbtn.addEventListener('click', function() {
+
+})
+
+
 }
 
-window.addEventListener('load', app);
+window.addEventListener('load', app); 
