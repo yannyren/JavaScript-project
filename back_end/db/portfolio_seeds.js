@@ -1,6 +1,6 @@
 use stockoverflow;
 
-db.sample.insert( 
+db.portfolio.insert( 
   [
     {
       "name": "Fusionex",
