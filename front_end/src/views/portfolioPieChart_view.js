@@ -1,8 +1,22 @@
 //Build the chart
 // var PieChart = function(title, data)
-var PieChart = function() {
+var PieChart = function() { 
+
+}
+
+PieChart.prototype.render = function(stockData) {
     
     var container = document.getElementById("pieChart");
+    
+    var filler = function(stockData){
+      var portfolioDataArray = []
+
+      for (var stock of stockData) {
+        var stockDetails = {name: "Shares", data: [ {name: stock.name, y: stock.price * stock.amount}]}
+          portfolioDataArray.push(stockDetails);
+      }
+    };
+
     
     var chart = new Highcharts.Chart({
       chart: {
@@ -67,7 +81,7 @@ var PieChart = function() {
 
     // Radialize the colors
     //code needed be scrutinised, check with Highchart website
-    chart.getOptions().colors = Highcharts.map(chart.getOptions().colors, function (color) {
+    Highcharts.getOptions().colors = Highcharts.map(chart.getOptions().colors, function (color) {
       return { 
         radialGradient: {
           cx: 0.5,
@@ -79,5 +93,7 @@ var PieChart = function() {
           [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
         ]
       };
-    });
+    })
 }
+
+module.exports = PieChart;
