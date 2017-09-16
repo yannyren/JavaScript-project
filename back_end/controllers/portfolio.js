@@ -12,7 +12,6 @@ MongoClient.connect( 'mongodb://localhost:27017/stockoverflow', function( err, d
 portfolioRouter.get( '/', function( req, res ) {
   db.collection( 'portfolio' ).find().toArray( function( err, results ) {
 
-    console.log( results );
     if( err ) {
       console.log( "Error: " + err.toString() );
       res.json( false );
