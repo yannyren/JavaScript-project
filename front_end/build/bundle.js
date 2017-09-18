@@ -70,11 +70,16 @@
 var PortfolioView = __webpack_require__(1);
 var PieChart = __webpack_require__( 2);
 var AjaxRequest = __webpack_require__( 3);
+var FunctionBlock = __webpack_require__(5);
 portfolioView = new PortfolioView();
 pieChart = new PieChart();
 
+var afterAjax = new FunctionBlock();
+afterAjax.addFunction(pieChart.render);
+afterAjax.addFunction(portfolioView.render);
+
 var seedData = new AjaxRequest("http://localhost:3001/api/portfolio");
-seedData.get(portfolioView.render);
+seedData.get(afterAjax);
 
 
 var app = function(){
@@ -86,8 +91,6 @@ var app = function(){
         detailsPage.style.display = 'none';
     }
     openingPage();
-    
-    pieChart.render();
 
     var overviewbtn = document.getElementById('overviewbtn');
     overviewbtn.addEventListener('click', function() {
@@ -263,7 +266,8 @@ AjaxRequest.prototype.get = function(callback) {
         var jsonString = request.responseText;
         this.data = JSON.parse(jsonString);
         console.log( 'From ajaxrequest', this.data );
-        callback(this.data);
+        callback.setData(this.data);
+        callback.execute();
     }.bind(this));
     request.send();
 }
@@ -281,6 +285,29 @@ request.send(JSON.stringify(data));
 }
 
 module.exports = AjaxRequest;
+
+/***/ }),
+/* 4 */,
+/* 5 */
+/***/ (function(module, exports) {
+
+var FunctionBlock = function(){
+  this.data = null;
+  this.functions = [];
+}
+FunctionBlock.prototype.setData = function( data ){
+  this.data = data;
+}
+FunctionBlock.prototype.addFunction = function( addFunction ){
+  this.functions.push( addFunction );
+}
+FunctionBlock.prototype.execute = function(){
+  for ( var runFunction of this.functions ){
+    runFunction( this.data );
+  }
+}
+
+module.exports = FunctionBlock;
 
 /***/ })
 /******/ ]);
