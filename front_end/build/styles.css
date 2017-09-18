@@ -1,16 +1,17 @@
 html {
     font-family: Geneva;
   }
+
+  h1 {
+    clear: both;
+  }
   
   #companylogo {
-    height: 150px; 
-    width: 180px;
+    height: 110px; 
+    width: 150px;
   }
-
-.navbutton {
-    position: absolute;
-    top: 20px;
-    right: 80px;
+  
+  .navbutton {
     font-size: 24px;
     padding: 15px 25px;
     float: left;
@@ -20,16 +21,23 @@ html {
     text-decoration: none;
     outline: none;
     background-color: #4CAF50;
-    border-radius: 15px;
     box-shadow: 0 9px #999;
+    width: 200px;
 }
 
 .navbutton:hover {
-    background-color: #3e8e41
+    background-color: #3e8e41;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .navbutton:active {
     background-color: #3e8e41;
-    box-shadow: 0 5px #666;
+    /* box-shadow: 0 5px #666; */
     transform: translateY(4px);
+  }
+
+  .pageview {
+    position: relative;
+    top: 50px;
+    clear: both;
   }
