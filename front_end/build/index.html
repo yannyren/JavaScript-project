@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Stock Overflow</title>
 
-    <link rel="icon" href="./images/dollar.jpg">
+    <link rel="icon" href="./images/stock_overflow_logo.png">
     <link rel="stylesheet" type="text/css" href="styles.css" media="screen">
     <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>    
     <script src="bundle.js" type="text/javascript"></script>
@@ -16,15 +16,19 @@
 
     <header>
 
-        <img id='companylogo' src="./images/dollar.jpg"  alt="Company Logo">
-        <h1>Stock Overflow</h1>
+        <img id='companylogo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
+        <!-- <h1>Stock Overflow</h1> -->
+        <nav>   
+       
+        <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
+        <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
+        </nav>
     </header>
 
-    <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
-    <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
+   
         
     <div id="overviewpage" class="pageview">
-            <h1>Over View Section</h1>
+            <h2>Over View Section</h2>
             <div id="pieChart"></div>    
     </div>
 
