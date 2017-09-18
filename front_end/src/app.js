@@ -20,21 +20,21 @@ var app = function(){
     
     pieChart.render();
 
-var overviewbtn = document.getElementById('overviewbtn');
-overviewbtn.addEventListener('click', function() {
-    var overviewPage = document.getElementById('overviewpage');
-    overviewPage.style.display = "block";
-    var detailsPage = document.getElementById('detailspage');
-    detailsPage.style.display = "none";
-})
+    var overviewbtn = document.getElementById('overviewbtn');
+    overviewbtn.addEventListener('click', function() {
+        var overviewPage = document.getElementById('overviewpage');
+        overviewPage.style.display = "block";
+        var detailsPage = document.getElementById('detailspage');
+        detailsPage.style.display = "none";
+    })
 
-var detailsbtn = document.getElementById('detailsbtn')
-detailsbtn.addEventListener('click', function() {
-    var detailsPage = document.getElementById('detailspage');
-    detailsPage.style.display = 'block';
-    var overviewPage = document.getElementById('overviewpage');
-    overviewPage.style.display = 'none';
-})
+    var detailsbtn = document.getElementById('detailsbtn')
+    detailsbtn.addEventListener('click', function() {
+        var detailsPage = document.getElementById('detailspage');
+        detailsPage.style.display = 'block';
+        var overviewPage = document.getElementById('overviewpage');
+        overviewPage.style.display = 'none';
+    })
 
 }
 
