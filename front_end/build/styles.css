@@ -1,16 +1,17 @@
 html {
     font-family: Geneva;
   }
+
+  h1 {
+    clear: both;
+  }
   
   #companylogo {
-    height: 150px; 
-    width: 180px;
+    height: 110px; 
+    width: 150px;
   }
-
-.navbutton {
-    position: absolute;
-    top: 20px;
-    right: 80px;
+  
+  /* .navbutton {
     font-size: 24px;
     padding: 15px 25px;
     float: left;
@@ -20,16 +21,42 @@ html {
     text-decoration: none;
     outline: none;
     background-color: #4CAF50;
-    border-radius: 15px;
     box-shadow: 0 9px #999;
-}
+    width: 200px;
+} */
 
-.navbutton:hover {
-    background-color: #3e8e41
+
+  .navbutton {
+    display: inline;
+    padding: 12px;
+    border: 1px solid #77aaaa;
+    font-family: arial;
+    font-weight: bold;
+    text-transform: uppercase;
+    color:#fff;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 4px;
+    background: #aadddd;
+    background:linear-gradient(top, #aadddd 0%, #77aaaa 100%);
+    box-shadow: 2px 2px 4px 2px rgba(40, 40, 40, 0.6);
+    cursor: pointer;
+
+ } 
+
+ .navbutton:hover {
+  background-color: #77aaaa;
+  background: linear-gradient(bottom, #aadddd 0%, #77aaaa 100%);
 }
 
 .navbutton:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+  background-color: #3e8e41;
+  /* box-shadow: 0 5px #666; */
+  transform: translateY(4px);
+}
+
+  .pageview {
+    position: relative;
+    top: 50px;
+    clear: both;
   }
