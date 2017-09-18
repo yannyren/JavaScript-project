@@ -1,6 +1,7 @@
 var express = require( 'express' );
 var server = express();
 var router = express.Router();
+
 server.use( express.static( 'build' ) );
 
 server.listen( 3000, function(){
