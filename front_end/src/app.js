@@ -9,18 +9,23 @@ seedData.get(portfolioView.render);
 
 
 var app = function(){
-
-    pieChart.render();
-
     
+    var openingPage = function(){
+        var overviewPage = document.getElementById('overviewpage'); 
+        overviewPage.style.display = 'block';
+        var detailsPage = document.getElementById('detailspage');
+        detailsPage.style.display = 'none';
+    }
+    openingPage();
+    
+    pieChart.render();
 
 var overviewbtn = document.getElementById('overviewbtn');
 overviewbtn.addEventListener('click', function() {
     var overviewPage = document.getElementById('overviewpage');
-    overviewPage.style.display = 'block';
+    overviewPage.style.display = "block";
     var detailsPage = document.getElementById('detailspage');
-    detailsPage.style.display = 'none';
-
+    detailsPage.style.display = "none";
 })
 
 var detailsbtn = document.getElementById('detailsbtn')

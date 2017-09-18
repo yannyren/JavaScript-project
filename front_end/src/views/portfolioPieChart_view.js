@@ -1,57 +1,74 @@
-
-  //Build the chart
-// var PieChart = function(title, data)
-var PieChart = function() { 
+var PieChart = function() {
 
 }
 
 PieChart.prototype.render = function(stockData) {
+  
+  var container = document.getElementById("pieChart");
+  
+  var filler = function(stockData){
     
-    var container = document.getElementById("pieChart");
+    var portfolioDataArray = []
     
-    var filler = function(stockData){
-      var portfolioDataArray = []
-
-      for (var stock of stockData) {
-        var stockDetails = {name: "Shares", data: [ {name: stock.name, y: stock.price * stock.amount}]}
-          portfolioDataArray.push(stockDetails);
+    for (var stock of stockData) {
+      var stockDetails =
+      {
+        name: "Shares", 
+        data:
+        [ 
+        {
+          name: stock.name,
+          y: stock.price * stock.amount
+        }
+      ]}
+      portfolioDataArray.push(stockDetails);
       }
     };
-
+    
     var chart = new Highcharts.Chart({
-      chart: {
+      
+      chart:
+      {
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
         type: 'pie',
         renderTo: container
       },
-      title: { 
+      title: 
+      { 
         text: 'Portfolio Summary'
       },
-      credits: {
+      credits: 
+      {
         enabled: false
       },
-      tooltip: {
+      tooltip: 
+      {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
       },
-      plotOptions: {
-        pie: {
+      plotOptions: 
+      {
+        pie: 
+        {
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
           enabled: true,
           format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-          style: {
+          style: 
+          {
             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
           },
           connectorColor: 'silver'
           }
         }
       },
-      series: [{
+      series: [
+        {
         name: 'Shares',
-        data: [
+        data: 
+        [
           {
             name: "Fusionex",
             y: 240000 //price * quantity
@@ -71,29 +88,24 @@ PieChart.prototype.render = function(stockData) {
           {
             name: "Pets At Home",
             y: 618500
-        
           }
-          
         ]
       }]
+});
 
-})
-
-    // Radialize the colors
-    //code needed be scrutinised, check with Highchart website
-    chart.getOptions().colors = Highcharts.map(chart.getOptions().colors, function (color) {
-      return { 
-        radialGradient: {
-          cx: 0.5,
-          cy: 0.3,
-          r: 0.7
-        },
-        stops: [
-          [0, color],
-          [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-        ]
-      };
-    })
-}
+Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+  return {
+    radialGradient:
+    {
+      cx: 0.5,
+      cy: 0.3,
+      r: 0.7,
+    },
+    stops: [
+      [0, color],
+      [1, Highcharts.Color(color).brighten(-0.3).get('rgb')]
+    ]
+  }
+});}
 
 module.exports = PieChart;
