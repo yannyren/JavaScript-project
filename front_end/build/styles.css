@@ -1,33 +1,20 @@
 html {
-    font-family: Geneva;
-  }
+    font-family: Georgia, serif;
+}
 
-  h1 {
+h2 {
     clear: both;
-  }
+}
   
-  #companylogo {
-    height: 110px; 
-    width: 150px;
-  }
-  
-  /* .navbutton {
-    font-size: 24px;
-    padding: 15px 25px;
-    float: left;
-    border: 1px solid green;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    background-color: #4CAF50;
-    box-shadow: 0 9px #999;
-    width: 200px;
-} */
+#companylogo {
+    height: 250px; 
+    width: 250px;
+}
 
 
-  .navbutton {
+.navbutton {
     display: inline;
+    margin-inline-start: 30px;
     padding: 12px;
     border: 1px solid #77aaaa;
     font-family: arial;
@@ -41,10 +28,11 @@ html {
     background:linear-gradient(top, #aadddd 0%, #77aaaa 100%);
     box-shadow: 2px 2px 4px 2px rgba(40, 40, 40, 0.6);
     cursor: pointer;
+    
 
- } 
+} 
 
- .navbutton:hover {
+.navbutton:hover {
   background-color: #77aaaa;
   background: linear-gradient(bottom, #aadddd 0%, #77aaaa 100%);
 }
@@ -55,8 +43,8 @@ html {
   transform: translateY(4px);
 }
 
-  .pageview {
+.pageview {
     position: relative;
     top: 50px;
     clear: both;
-  }
+}
