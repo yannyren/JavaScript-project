@@ -8,5 +8,5 @@ server.listen( 3000, function(){
 });
 
 router.get( '/', function( req, res ){
-  res.sendFile( __dirname + '/index.html' );
+  res.sendFile( __dirname + '/build/index.html' );
 });
