@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stock Overflow</title>
+
+    <link rel="icon" href="./images/stock_overflow_logo.png">
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen">
+    <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>    
+    <script src="bundle.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <header>
+
+        <img id='companylogo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
+        <!-- <h1>Stock Overflow</h1> -->
+        <nav>   
+       
+        <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
+        <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
+        </nav>
+    </header>
+
+   
+        
+    <div id="overviewpage" class="pageview">
+            <h2>Over View Section</h2>
+            <div id="pieChart"></div>    
+    </div>
+
+
+       
+    <div id="detailspage" class="pageview">
+            <h1>Detail Section</h1>
+
+            <!--make this list into a select list  -->
+            <select id="portfolio-list" size="6" multiple></select>
+
+            <ul id="news-feed"></ul>
+    </div>
+
+</body>
+
+</html>

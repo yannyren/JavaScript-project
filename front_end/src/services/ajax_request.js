@@ -10,7 +10,9 @@ AjaxRequest.prototype.get = function(callback) {
         if (request.status !== 200) return;
         var jsonString = request.responseText;
         this.data = JSON.parse(jsonString);
-        callback(this.data);
+        console.log( 'From ajaxrequest', this.data );
+        callback.setData(this.data);
+        callback.execute();
     }.bind(this));
     request.send();
 }

@@ -1,6 +1,7 @@
 var express = require( 'express' );
 var server = express();
 var router = express.Router();
+
 server.use( express.static( 'build' ) );
 
 server.listen( 3000, function(){
@@ -8,5 +9,5 @@ server.listen( 3000, function(){
 });
 
 router.get( '/', function( req, res ){
-  res.sendFile( __dirname + '/index.html' );
+  res.sendFile( __dirname + '/build/index.html' );
 });
