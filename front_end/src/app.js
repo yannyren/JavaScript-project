@@ -1,5 +1,5 @@
 var portfolioView = new PortfolioView();
-var seedData = new AjaxRequest("http://localhost:3001/");
+var seedData = new AjaxRequest("http://localhost:3001/api/portfolio");
 seedData.get(portfolioView.render);
 
 
