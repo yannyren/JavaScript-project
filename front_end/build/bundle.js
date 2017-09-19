@@ -70,7 +70,7 @@
 var PortfolioView = __webpack_require__(1);
 var PieChart = __webpack_require__( 2);
 var AjaxRequest = __webpack_require__( 3);
-var FunctionBlock = __webpack_require__(5);
+var FunctionBlock = __webpack_require__(4);
 portfolioView = new PortfolioView();
 pieChart = new PieChart();
 
@@ -256,8 +256,7 @@ request.send(JSON.stringify(data));
 module.exports = AjaxRequest;
 
 /***/ }),
-/* 4 */,
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 var FunctionBlock = function(){
