@@ -37,6 +37,7 @@ header{
 
 .navbutton {
     display: inline-block;
+    float: right;
     vertical-align: bottom;
     margin-right: 20px;
     height: 30px;
@@ -100,7 +101,7 @@ h2 {
 .buy-share-input-box {
     border-radius: 5px;
     background-color: #F0F5F5; 
-    box-shadow: 0px 2px 2px 1px rgba(40, 40, 40, 0.6);
+    box-shadow: 2px 2px 0px 0px rgba(40, 40, 40, 0.6);
 }
 
 #add-share {
@@ -132,6 +133,7 @@ h2 {
 
 #scatterChart{
     width: 60%;
+    height: 100%;
 }
 
 #news-feed{
