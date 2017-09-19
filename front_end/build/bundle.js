@@ -63,13 +63,14 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 var AjaxRequest = __webpack_require__( 3);
-var DetailsPage = __webpack_require__( 7);
-var OverviewPage = __webpack_require__( 8);
+var DetailsPage = __webpack_require__( 465);
+var OverviewPage = __webpack_require__( 466);
 
 // var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
@@ -119,7 +120,8 @@ window.addEventListener('load', function(){
 }); 
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports) {
 
 var PortfolioView = function( refresh, domElement ){
@@ -146,7 +148,8 @@ PortfolioView.prototype.setData = function( data ){
 module.exports = PortfolioView;
 
 /***/ }),
-/* 2 */
+
+/***/ 2:
 /***/ (function(module, exports) {
 
 var PieChart = function( refresh, container ) {
@@ -237,7 +240,8 @@ Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, 
 module.exports = PieChart;
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /***/ (function(module, exports) {
 
 var AjaxRequest = function(url) {
@@ -273,9 +277,104 @@ request.send(JSON.stringify(data));
 module.exports = AjaxRequest;
 
 /***/ }),
-/* 4 */,
-/* 5 */,
-/* 6 */
+
+/***/ 465:
+/***/ (function(module, exports, __webpack_require__) {
+
+var PortfolioView = __webpack_require__(1);
+var ScatterChart = __webpack_require__(5);
+
+var DetailsPage = function( refresh ) {
+    this.data = null;
+    this.refresh = refresh;
+
+    //grab dom elements
+    portfolioViewSelect = document.querySelector('#portfolio-list')
+    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
+    scatterChartContainer = document.querySelector( '#scatterChart')
+    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+}
+
+DetailsPage.prototype.render = function(){
+    portfolioView.setData( this.data );
+    scatterChart.setData( this.data );
+    portfolioView.render();
+    scatterChart.render();
+}
+
+DetailsPage.prototype.setData = function( data ){
+    this.data = data;
+}
+
+module.exports = DetailsPage;
+
+/***/ }),
+
+/***/ 466:
+/***/ (function(module, exports, __webpack_require__) {
+
+var PieChart = __webpack_require__( 2);
+var Valuation = __webpack_require__( 467);
+
+var OverviewPage = function( refresh ) {
+    this.data = null;
+    this.refresh = refresh;
+
+    //grab dom elements
+    pieChartContainer = document.querySelector( '#pieChart' );
+    pieChart = new PieChart( this.refresh, pieChartContainer );
+    totalValuation = document.querySelector( '#valuation');
+    valuation = new Valuation (this.refresh, totalValuation);
+}
+
+OverviewPage.prototype.render = function(){
+    pieChart.setData( this.data );
+    pieChart.render();
+    valuation.setData( this.data);
+    valuation.render();
+}
+
+OverviewPage.prototype.setData = function( data ){
+    this.data = data;
+}
+
+module.exports = OverviewPage;
+
+/***/ }),
+
+/***/ 467:
+/***/ (function(module, exports) {
+
+var Valuation = function (refresh, container) {
+    this.data = null;
+    this.refresh = refresh;
+    this.container = container
+}
+
+Valuation.prototype.setData = function ( data ){
+    this.data = data;
+}
+
+Valuation.prototype.render = function() {
+    var totalValuation = 0;
+    var stockData = this.data;
+    
+    stockData.forEach(function(stock) {
+        totalValuation += (stock.quantity * stock.price);
+    });
+
+    totalValuation = totalValuation/100;
+    
+    totalValuation = totalValuation.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    this.container.innerText = "Total Valuation: $" + (totalValuation); 
+}
+
+module.exports = Valuation;
+
+/***/ }),
+
+/***/ 5:
 /***/ (function(module, exports) {
 
 var ScatterChart = function( refresh, container ){
@@ -501,63 +600,7 @@ ScatterChart.prototype.render = function(){
 
 module.exports = ScatterChart;
 
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var PortfolioView = __webpack_require__(1);
-var ScatterChart = __webpack_require__(6);
-
-var DetailsPage = function( refresh ) {
-    this.data = null;
-    this.refresh = refresh;
-
-    //grab dom elements
-    portfolioViewSelect = document.querySelector('#portfolio-list')
-    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
-    scatterChartContainer = document.querySelector( '#scatterChart')
-    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
-}
-
-DetailsPage.prototype.render = function(){
-    portfolioView.setData( this.data );
-    scatterChart.setData( this.data );
-    portfolioView.render();
-    scatterChart.render();
-}
-
-DetailsPage.prototype.setData = function( data ){
-    this.data = data;
-}
-
-module.exports = DetailsPage;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var PieChart = __webpack_require__( 2);
-
-var OverviewPage = function( refresh ) {
-    this.data = null;
-    this.refresh = refresh;
-
-    //grab dom elements
-    pieChartContainer = document.querySelector( '#pieChart' );
-    pieChart = new PieChart( this.refresh, pieChartContainer );
-}
-
-OverviewPage.prototype.render = function(){
-    pieChart.setData( this.data );
-    pieChart.render();
-}
-
-OverviewPage.prototype.setData = function( data ){
-    this.data = data;
-}
-
-module.exports = OverviewPage;
-
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=bundle.js.map
