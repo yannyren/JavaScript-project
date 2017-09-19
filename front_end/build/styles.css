@@ -1,18 +1,17 @@
 html {
     font-family: Georgia, serif;
 }
-
+/* 
 h2 {
     clear: both;
-}
+} */
   
 #companylogo {
     height: 180px; 
-    width: 180px;
+    width: 200px;
     display: inline-block;
     vertical-align: top;
-    margin-right: 800px;
-    margin-top: 15px;
+    margin-right: 900px;
 }
 
 /* .nav-bar {
