@@ -68,15 +68,15 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var AjaxRequest = __webpack_require__( 3);
-var DetailsPage = __webpack_require__( 5);
-var OverviewPage = __webpack_require__( 7);
+var DetailsPage = __webpack_require__( 8);
+var OverviewPage = __webpack_require__( 10);
 
 // var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
 
 var App = function(){
-    this.detailsPage = new DetailsPage( this.refresh );
-    this.overviewPage = new OverviewPage( this.refresh );
+    this.detailsPage = new DetailsPage( this.refresh.bind(this) );
+    this.overviewPage = new OverviewPage( this.refresh.bind(this) );
 }
 
 App.prototype.refresh = function(){
@@ -86,7 +86,7 @@ App.prototype.refresh = function(){
             this.overviewPage.setData( data );
             this.detailsPage.render();
             this.overviewPage.render();
-        }.bind( this ))
+        }.bind(this))
 }
 
 App.prototype.start = function(){
@@ -248,6 +248,7 @@ var AjaxRequest = function(url) {
 AjaxRequest.prototype.get = function(callback) {
     var request = new XMLHttpRequest();
     request.open('GET', this.url);
+    console.log( "this.url", this.url );
     request.addEventListener('load', function() {
         if (request.status !== 200) return;
         var jsonString = request.responseText;
@@ -258,27 +259,33 @@ AjaxRequest.prototype.get = function(callback) {
     request.send();
 }
 
-AjaxRequest.prototype.post = function(data) {
+AjaxRequest.prototype.post = function(sendData, callback) {
     var request = new XMLHttpRequest();
     request.open("POST", this.url);
+    console.log( "this.url", this.url );
     request.setRequestHeader("Content-Type", "application/json");
     request.addEventListener('load', function() {
         if (request.status!==200) return;
         var jsonString = request.responseText;
         this.data = JSON.parse(jsonString);
+        callback( this.data );
     }.bind(this));
-request.send(JSON.stringify(data));
+    request.send(JSON.stringify(sendData));
 }
 
 module.exports = AjaxRequest;
 
 /***/ }),
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var PortfolioView = __webpack_require__(1);
-var ScatterChart = __webpack_require__(6);
+var ScatterChart = __webpack_require__(9);
+var AjaxRequest = __webpack_require__( 3 );
 
 var DetailsPage = function( refresh ) {
     this.data = null;
@@ -289,6 +296,11 @@ var DetailsPage = function( refresh ) {
     portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
     scatterChartContainer = document.querySelector( '#scatterChart')
     scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+
+
+    var addShareButton = document.querySelector( "#add-share" );
+    addShareButton.addEventListener( "click", this.addShares.bind(this) );
+
 }
 
 DetailsPage.prototype.render = function(){
@@ -302,10 +314,30 @@ DetailsPage.prototype.setData = function( data ){
     this.data = data;
 }
 
+DetailsPage.prototype.addShares = function(){
+    var newName = document.querySelector( "#new-name" );
+    var newEpicText = document.querySelector( "#new-epic" );
+    var newNumber = document.querySelector( "#new-number" );
+    var newBuyPrice = document.querySelector( "#new-buy-price" );
+    var newShare = {
+        "name": newName.value,
+        "epic": newEpicText.value,
+        "price": newBuyPrice.value,
+        "quantity": newNumber.value,
+        "buyPrice": newBuyPrice.value,
+        "buyDate": new Date().toISOString().split('T')[0]
+    }
+    console.log( newShare );
+    var postShare = new AjaxRequest( "http://localhost:3001/api/portfolio" );
+    console.log( "this.refresh in addShares", this );
+    postShare.post( newShare, this.refresh );
+
+}
+
 module.exports = DetailsPage;
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var ScatterChart = function( refresh, container ){
@@ -506,7 +538,7 @@ ScatterChart.prototype.render = function(){
 module.exports = ScatterChart;
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var PieChart = __webpack_require__( 2);
