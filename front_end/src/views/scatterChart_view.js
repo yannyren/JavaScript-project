@@ -8,19 +8,44 @@ ScatterChart.prototype.setData = function( data ){
     this.data = data;
 }
 
+ScatterChart.prototype.pair = function(x, y){
+    var pair = [];
+    pair.push(x);
+    pair.push(y);
+}
+
 ScatterChart.prototype.render = function(){
 
-    // var stockData = this.data
-
-    scatterChartObjects = [];
-
+    var scatterObjects = [];
+    
     for (var i = 0; i < this.data.length; i++) {
         var obj = {};
         obj["name"] = this.data[i].name;
-        obj["data"] = function(){
-            
-        }
+        obj["data"] = [];
+            for (var j = 0; j < this.data.pastDayPrices.length; j++) {
+                var thisPair = 
+                
+            }
     }
+
+
+
+    // var stockData = this.data
+    // var scatterChartObjects = [];
+    // for (var i = 0; i < this.data.length -1 ; i++) {
+    //     var obj = {};
+    //     obj["name"] = this.data[i].name;
+    //     obj["data"] = [];
+    //     // y axis
+
+    //         var prices = _.chunk(this.data[i].pastDayPrices, 1);
+    //         for (vata j = 0; j < prices.length -1; j++) {
+    //             var day = prices.indexOf[j] + 1;
+    //             prices[j].unshift(day);
+    //         }
+    //         obj["data"].push(prices);
+    //         scatterChartObjects.push(obj);
+    
 
     // for loop to pull out graph data goes here
     // scatter data goes in and x the y pairings.
