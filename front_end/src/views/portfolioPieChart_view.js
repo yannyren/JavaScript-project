@@ -5,28 +5,18 @@ var PieChart = function() {
 PieChart.prototype.render = function(stockData) {
   
   var container = document.getElementById("pieChart");
-  
-  var filler = function(stockData){
     
-    var portfolioDataArray = []
-    
-    for (var stock of stockData) {
-      var stockDetails =
-      {
-        name: "Shares", 
-        data:
-        [ 
-        {
-          name: stock.name,
-          y: stock.price * stock.amount
-        }
-      ]}
-      portfolioDataArray.push(stockDetails);
-      }
-    };
-    
+    var pieChartObjects = [];
+
+    for (var i = 0; i < stockData.length; i++) {
+      var obj = {};
+      obj["name"] = stockData[i].name;
+      obj["y"] = (stockData[i].price * stockData[i].quantity * 1.0);
+      pieChartObjects.push(obj);
+    }
+
     var chart = new Highcharts.Chart({
-      
+
       chart:
       {
         plotBackgroundColor: null,
@@ -67,29 +57,8 @@ PieChart.prototype.render = function(stockData) {
       series: [
         {
         name: 'Shares',
-        data: 
-        [
-          {
-            name: "Fusionex",
-            y: 240000 //price * quantity
-          },
-          {
-            name: "Empiric Student Prop",
-            y: 392000,
-            sliced: true,
-            selected: true
-          
-          },
-          {
-            name: "Worldpay",
-            y: 310000
-      
-          },
-          {
-            name: "Pets At Home",
-            y: 618500
-          }
-        ]
+        data: pieChartObjects
+        
       }]
 });
 

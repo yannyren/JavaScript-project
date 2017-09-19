@@ -11,7 +11,8 @@ AjaxRequest.prototype.get = function(callback) {
         var jsonString = request.responseText;
         this.data = JSON.parse(jsonString);
         console.log( 'From ajaxrequest', this.data );
-        callback(this.data);
+        callback.setData(this.data);
+        callback.execute();
     }.bind(this));
     request.send();
 }

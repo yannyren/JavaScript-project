@@ -70,11 +70,16 @@
 var PortfolioView = __webpack_require__(1);
 var PieChart = __webpack_require__( 2);
 var AjaxRequest = __webpack_require__( 3);
+var FunctionBlock = __webpack_require__(5);
 portfolioView = new PortfolioView();
 pieChart = new PieChart();
 
+var afterAjax = new FunctionBlock();
+afterAjax.addFunction(pieChart.render);
+afterAjax.addFunction(portfolioView.render);
+
 var seedData = new AjaxRequest("http://localhost:3001/api/portfolio");
-seedData.get(portfolioView.render);
+seedData.get(afterAjax);
 
 
 var app = function(){
@@ -86,24 +91,22 @@ var app = function(){
         detailsPage.style.display = 'none';
     }
     openingPage();
-    
-    pieChart.render();
 
-var overviewbtn = document.getElementById('overviewbtn');
-overviewbtn.addEventListener('click', function() {
-    var overviewPage = document.getElementById('overviewpage');
-    overviewPage.style.display = "block";
-    var detailsPage = document.getElementById('detailspage');
-    detailsPage.style.display = "none";
-})
+    var overviewbtn = document.getElementById('overviewbtn');
+    overviewbtn.addEventListener('click', function() {
+        var overviewPage = document.getElementById('overviewpage');
+        overviewPage.style.display = "block";
+        var detailsPage = document.getElementById('detailspage');
+        detailsPage.style.display = "none";
+    })
 
-var detailsbtn = document.getElementById('detailsbtn')
-detailsbtn.addEventListener('click', function() {
-    var detailsPage = document.getElementById('detailspage');
-    detailsPage.style.display = 'block';
-    var overviewPage = document.getElementById('overviewpage');
-    overviewPage.style.display = 'none';
-})
+    var detailsbtn = document.getElementById('detailsbtn')
+    detailsbtn.addEventListener('click', function() {
+        var detailsPage = document.getElementById('detailspage');
+        detailsPage.style.display = 'block';
+        var overviewPage = document.getElementById('overviewpage');
+        overviewPage.style.display = 'none';
+    })
 
 }
 
@@ -118,13 +121,13 @@ var PortfolioView = function(){
 }
 
 PortfolioView.prototype.render = function(portfolioData){
+    console.log( "should be portfolioData", portfolioData); 
     var portfolioList = document.getElementById('portfolio-list');
-    console.log( "should be portfolioList", portfolioList); 
     for (var i = 0; i < portfolioData.length; i++) {
-        var listItem = document.createElement('li');
-        listItem.value = i;
-        listItem.innerText = portfolioData[i].name;
-        portfolioList.appendChild(listItem);
+        var option = document.createElement('option');
+        option.value = i;
+        option.innerText = portfolioData[i].name;
+        portfolioList.appendChild(option);
     }
 }
 
@@ -141,28 +144,18 @@ var PieChart = function() {
 PieChart.prototype.render = function(stockData) {
   
   var container = document.getElementById("pieChart");
-  
-  var filler = function(stockData){
     
-    var portfolioDataArray = []
-    
-    for (var stock of stockData) {
-      var stockDetails =
-      {
-        name: "Shares", 
-        data:
-        [ 
-        {
-          name: stock.name,
-          y: stock.price * stock.amount
-        }
-      ]}
-      portfolioDataArray.push(stockDetails);
-      }
-    };
-    
+    var pieChartObjects = [];
+
+    for (var i = 0; i < stockData.length; i++) {
+      var obj = {};
+      obj["name"] = stockData[i].name;
+      obj["y"] = (stockData[i].price * stockData[i].quantity * 1.0);
+      pieChartObjects.push(obj);
+    }
+
     var chart = new Highcharts.Chart({
-      
+
       chart:
       {
         plotBackgroundColor: null,
@@ -203,29 +196,8 @@ PieChart.prototype.render = function(stockData) {
       series: [
         {
         name: 'Shares',
-        data: 
-        [
-          {
-            name: "Fusionex",
-            y: 240000 //price * quantity
-          },
-          {
-            name: "Empiric Student Prop",
-            y: 392000,
-            sliced: true,
-            selected: true
-          
-          },
-          {
-            name: "Worldpay",
-            y: 310000
-      
-          },
-          {
-            name: "Pets At Home",
-            y: 618500
-          }
-        ]
+        data: pieChartObjects
+        
       }]
 });
 
@@ -263,7 +235,8 @@ AjaxRequest.prototype.get = function(callback) {
         var jsonString = request.responseText;
         this.data = JSON.parse(jsonString);
         console.log( 'From ajaxrequest', this.data );
-        callback(this.data);
+        callback.setData(this.data);
+        callback.execute();
     }.bind(this));
     request.send();
 }
@@ -281,6 +254,29 @@ request.send(JSON.stringify(data));
 }
 
 module.exports = AjaxRequest;
+
+/***/ }),
+/* 4 */,
+/* 5 */
+/***/ (function(module, exports) {
+
+var FunctionBlock = function(){
+  this.data = null;
+  this.functions = [];
+}
+FunctionBlock.prototype.setData = function( data ){
+  this.data = data;
+}
+FunctionBlock.prototype.addFunction = function( addFunction ){
+  this.functions.push( addFunction );
+}
+FunctionBlock.prototype.execute = function(){
+  for ( var runFunction of this.functions ){
+    runFunction( this.data );
+  }
+}
+
+module.exports = FunctionBlock;
 
 /***/ })
 /******/ ]);
