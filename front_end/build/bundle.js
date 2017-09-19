@@ -60,22 +60,55 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
 
-/***/ 0:
+var AjaxRequest = function(url) {
+    this.url = url;
+    this.data = [];
+}
+
+AjaxRequest.prototype.get = function(callback) {
+    var request = new XMLHttpRequest();
+    request.open('GET', this.url);
+    console.log( "this.url", this.url );
+    request.addEventListener('load', function() {
+        if (request.status !== 200) return;
+        var jsonString = request.responseText;
+        this.data = JSON.parse(jsonString);
+        console.log( 'From ajaxrequest', this.data );
+        callback(this.data);
+    }.bind(this));
+    request.send();
+}
+
+AjaxRequest.prototype.post = function(sendData, callback) {
+    var request = new XMLHttpRequest();
+    request.open("POST", this.url);
+    console.log( "this.url", this.url );
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener('load', function() {
+        if (request.status!==200) return;
+        var jsonString = request.responseText;
+        this.data = JSON.parse(jsonString);
+        callback( this.data );
+    }.bind(this));
+    request.send(JSON.stringify(sendData));
+}
+
+module.exports = AjaxRequest;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var AjaxRequest = __webpack_require__( 3);
-<<<<<<< HEAD
-var DetailsPage = __webpack_require__( 8);
-var OverviewPage = __webpack_require__( 10);
-=======
-var DetailsPage = __webpack_require__( 465);
-var OverviewPage = __webpack_require__( 466);
->>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
+var AjaxRequest = __webpack_require__( 0);
+var DetailsPage = __webpack_require__( 2);
+var OverviewPage = __webpack_require__( 5);
 
 // var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
@@ -125,185 +158,12 @@ window.addEventListener('load', function(){
 }); 
 
 /***/ }),
-
-/***/ 1:
-/***/ (function(module, exports) {
-
-var PortfolioView = function( refresh, domElement ){
-    this.data = null;
-    this.refresh = refresh;
-    this.domElement = domElement;
-}
-
-PortfolioView.prototype.render = function(){
-    var portfolioData = this.data;
-    console.log( "should be portfolioData", portfolioData); 
-    for (var i = 0; i < portfolioData.length; i++) {
-        var option = document.createElement('option');
-        option.value = i;
-        option.innerText = portfolioData[i].name;
-        this.domElement.appendChild(option);
-    }
-}
-
-PortfolioView.prototype.setData = function( data ){
-    this.data = data;
-}
-
-module.exports = PortfolioView;
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-var PieChart = function( refresh, container ) {
-  this.data = null;
-  this.refresh = refresh;
-  this.container = container;
-}
-
-PieChart.prototype.setData = function( data ){
-  this.data = data;
-}
-
-PieChart.prototype.render = function() {
-  
-    var stockData = this.data;
-
-    var pieChartObjects = [];
-
-    for (var i = 0; i < stockData.length; i++) {
-      var obj = {};
-      obj["name"] = stockData[i].name;
-      obj["y"] = (stockData[i].price * stockData[i].quantity * 1.0);
-      pieChartObjects.push(obj);
-    }
-
-    var chart = new Highcharts.Chart({
-
-      chart:
-      {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie',
-        renderTo: this.container
-      },
-      title: 
-      { 
-        text: 'Portfolio Summary'
-      },
-      credits: 
-      {
-        enabled: false
-      },
-      tooltip: 
-      {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
-      plotOptions: 
-      {
-        pie: 
-        {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-          enabled: true,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-          style: 
-          {
-            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-          },
-          connectorColor: 'silver'
-          }
-        }
-      },
-      series: [
-        {
-        name: 'Shares',
-        data: pieChartObjects
-        
-      }]
-});
-
-Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-  return {
-    radialGradient:
-    {
-      cx: 0.5,
-      cy: 0.3,
-      r: 0.7,
-    },
-    stops: [
-      [0, color],
-      [1, Highcharts.Color(color).brighten(-0.3).get('rgb')]
-    ]
-  }
-});}
-
-module.exports = PieChart;
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-var AjaxRequest = function(url) {
-    this.url = url;
-    this.data = [];
-}
-
-AjaxRequest.prototype.get = function(callback) {
-    var request = new XMLHttpRequest();
-    request.open('GET', this.url);
-    console.log( "this.url", this.url );
-    request.addEventListener('load', function() {
-        if (request.status !== 200) return;
-        var jsonString = request.responseText;
-        this.data = JSON.parse(jsonString);
-        console.log( 'From ajaxrequest', this.data );
-        callback(this.data);
-    }.bind(this));
-    request.send();
-}
-
-AjaxRequest.prototype.post = function(sendData, callback) {
-    var request = new XMLHttpRequest();
-    request.open("POST", this.url);
-    console.log( "this.url", this.url );
-    request.setRequestHeader("Content-Type", "application/json");
-    request.addEventListener('load', function() {
-        if (request.status!==200) return;
-        var jsonString = request.responseText;
-        this.data = JSON.parse(jsonString);
-        callback( this.data );
-    }.bind(this));
-    request.send(JSON.stringify(sendData));
-}
-
-module.exports = AjaxRequest;
-
-/***/ }),
-<<<<<<< HEAD
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var PortfolioView = __webpack_require__(1);
-var ScatterChart = __webpack_require__(9);
-var AjaxRequest = __webpack_require__( 3 );
-=======
-
-/***/ 465:
-/***/ (function(module, exports, __webpack_require__) {
-
-var PortfolioView = __webpack_require__(1);
-var ScatterChart = __webpack_require__(5);
->>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
+var PortfolioView = __webpack_require__(3);
+var ScatterChart = __webpack_require__(4);
+var AjaxRequest = __webpack_require__( 0 );
 
 var DetailsPage = function( refresh ) {
     this.data = null;
@@ -355,76 +215,34 @@ DetailsPage.prototype.addShares = function(){
 module.exports = DetailsPage;
 
 /***/ }),
-<<<<<<< HEAD
-/* 9 */
-=======
-
-/***/ 466:
-/***/ (function(module, exports, __webpack_require__) {
-
-var PieChart = __webpack_require__( 2);
-var Valuation = __webpack_require__( 467);
-
-var OverviewPage = function( refresh ) {
-    this.data = null;
-    this.refresh = refresh;
-
-    //grab dom elements
-    pieChartContainer = document.querySelector( '#pieChart' );
-    pieChart = new PieChart( this.refresh, pieChartContainer );
-    totalValuation = document.querySelector( '#valuation');
-    valuation = new Valuation (this.refresh, totalValuation);
-}
-
-OverviewPage.prototype.render = function(){
-    pieChart.setData( this.data );
-    pieChart.render();
-    valuation.setData( this.data);
-    valuation.render();
-}
-
-OverviewPage.prototype.setData = function( data ){
-    this.data = data;
-}
-
-module.exports = OverviewPage;
-
-/***/ }),
-
-/***/ 467:
+/* 3 */
 /***/ (function(module, exports) {
 
-var Valuation = function (refresh, container) {
+var PortfolioView = function( refresh, domElement ){
     this.data = null;
     this.refresh = refresh;
-    this.container = container
+    this.domElement = domElement;
 }
 
-Valuation.prototype.setData = function ( data ){
+PortfolioView.prototype.render = function(){
+    var portfolioData = this.data;
+    console.log( "should be portfolioData", portfolioData); 
+    for (var i = 0; i < portfolioData.length; i++) {
+        var option = document.createElement('option');
+        option.value = i;
+        option.innerText = portfolioData[i].name;
+        this.domElement.appendChild(option);
+    }
+}
+
+PortfolioView.prototype.setData = function( data ){
     this.data = data;
 }
 
-Valuation.prototype.render = function() {
-    var totalValuation = 0;
-    var stockData = this.data;
-    
-    stockData.forEach(function(stock) {
-        totalValuation += (stock.quantity * stock.price);
-    });
-
-    totalValuation = totalValuation/100;
-    
-    totalValuation = totalValuation.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
-    this.container.innerText = "Total Valuation: $" + (totalValuation); 
-}
-
-module.exports = Valuation;
+module.exports = PortfolioView;
 
 /***/ }),
-
-/***/ 5:
->>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
+/* 4 */
 /***/ (function(module, exports) {
 
 var ScatterChart = function( refresh, container ){
@@ -650,12 +468,12 @@ ScatterChart.prototype.render = function(){
 
 module.exports = ScatterChart;
 
-<<<<<<< HEAD
 /***/ }),
-/* 10 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var PieChart = __webpack_require__( 2);
+var PieChart = __webpack_require__( 6);
+var Valuation = __webpack_require__( 7);
 
 var OverviewPage = function( refresh ) {
     this.data = null;
@@ -664,11 +482,15 @@ var OverviewPage = function( refresh ) {
     //grab dom elements
     pieChartContainer = document.querySelector( '#pieChart' );
     pieChart = new PieChart( this.refresh, pieChartContainer );
+    totalValuation = document.querySelector( '#valuation');
+    valuation = new Valuation (this.refresh, totalValuation);
 }
 
 OverviewPage.prototype.render = function(){
     pieChart.setData( this.data );
     pieChart.render();
+    valuation.setData( this.data);
+    valuation.render();
 }
 
 OverviewPage.prototype.setData = function( data ){
@@ -677,9 +499,128 @@ OverviewPage.prototype.setData = function( data ){
 
 module.exports = OverviewPage;
 
-=======
->>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
-/***/ })
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
 
-/******/ });
+var PieChart = function( refresh, container ) {
+  this.data = null;
+  this.refresh = refresh;
+  this.container = container;
+}
+
+PieChart.prototype.setData = function( data ){
+  this.data = data;
+}
+
+PieChart.prototype.render = function() {
+  
+    var stockData = this.data;
+
+    var pieChartObjects = [];
+
+    for (var i = 0; i < stockData.length; i++) {
+      var obj = {};
+      obj["name"] = stockData[i].name;
+      obj["y"] = (stockData[i].price * stockData[i].quantity * 1.0);
+      pieChartObjects.push(obj);
+    }
+
+    var chart = new Highcharts.Chart({
+
+      chart:
+      {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie',
+        renderTo: this.container
+      },
+      title: 
+      { 
+        text: 'Portfolio Summary'
+      },
+      credits: 
+      {
+        enabled: false
+      },
+      tooltip: 
+      {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: 
+      {
+        pie: 
+        {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          style: 
+          {
+            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+          },
+          connectorColor: 'silver'
+          }
+        }
+      },
+      series: [
+        {
+        name: 'Shares',
+        data: pieChartObjects
+        
+      }]
+});
+
+Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+  return {
+    radialGradient:
+    {
+      cx: 0.5,
+      cy: 0.3,
+      r: 0.7,
+    },
+    stops: [
+      [0, color],
+      [1, Highcharts.Color(color).brighten(-0.3).get('rgb')]
+    ]
+  }
+});}
+
+module.exports = PieChart;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+var Valuation = function (refresh, container) {
+    this.data = null;
+    this.refresh = refresh;
+    this.container = container
+}
+
+Valuation.prototype.setData = function ( data ){
+    this.data = data;
+}
+
+Valuation.prototype.render = function() {
+    var totalValuation = 0;
+    var stockData = this.data;
+    
+    stockData.forEach(function(stock) {
+        totalValuation += (stock.quantity * stock.price);
+    });
+
+    totalValuation = totalValuation/100;
+    
+    totalValuation = totalValuation.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    this.container.innerText = "Total Valuation: $" + (totalValuation); 
+}
+
+module.exports = Valuation;
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=bundle.js.map
