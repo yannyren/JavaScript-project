@@ -68,8 +68,8 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var AjaxRequest = __webpack_require__( 3);
-var DetailsPage = __webpack_require__( 5);
-var OverviewPage = __webpack_require__( 7);
+var DetailsPage = __webpack_require__( 7);
+var OverviewPage = __webpack_require__( 8);
 
 // var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
@@ -274,37 +274,7 @@ module.exports = AjaxRequest;
 
 /***/ }),
 /* 4 */,
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var PortfolioView = __webpack_require__(1);
-var ScatterChart = __webpack_require__(6);
-
-var DetailsPage = function( refresh ) {
-    this.data = null;
-    this.refresh = refresh;
-
-    //grab dom elements
-    portfolioViewSelect = document.querySelector('#portfolio-list')
-    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
-    scatterChartContainer = document.querySelector( '#scatterChart')
-    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
-}
-
-DetailsPage.prototype.render = function(){
-    portfolioView.setData( this.data );
-    scatterChart.setData( this.data );
-    portfolioView.render();
-    scatterChart.render();
-}
-
-DetailsPage.prototype.setData = function( data ){
-    this.data = data;
-}
-
-module.exports = DetailsPage;
-
-/***/ }),
+/* 5 */,
 /* 6 */
 /***/ (function(module, exports) {
 
@@ -533,6 +503,37 @@ module.exports = ScatterChart;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var PortfolioView = __webpack_require__(1);
+var ScatterChart = __webpack_require__(6);
+
+var DetailsPage = function( refresh ) {
+    this.data = null;
+    this.refresh = refresh;
+
+    //grab dom elements
+    portfolioViewSelect = document.querySelector('#portfolio-list')
+    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
+    scatterChartContainer = document.querySelector( '#scatterChart')
+    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+}
+
+DetailsPage.prototype.render = function(){
+    portfolioView.setData( this.data );
+    scatterChart.setData( this.data );
+    portfolioView.render();
+    scatterChart.render();
+}
+
+DetailsPage.prototype.setData = function( data ){
+    this.data = data;
+}
+
+module.exports = DetailsPage;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var PieChart = __webpack_require__( 2);
