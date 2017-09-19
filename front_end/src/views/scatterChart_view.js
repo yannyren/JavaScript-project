@@ -16,17 +16,17 @@ ScatterChart.prototype.pair = function(x, y){
 
 ScatterChart.prototype.render = function(){
 
-    var scatterObjects = [];
+    // var scatterObjects = [];
     
-    for (var i = 0; i < this.data.length; i++) {
-        var obj = {};
-        obj["name"] = this.data[i].name;
-        obj["data"] = [];
-            for (var j = 0; j < this.data.pastDayPrices.length; j++) {
-                var thisPair = 
+    // for (var i = 0; i < this.data.length; i++) {
+    //     var obj = {};
+    //     obj["name"] = this.data[i].name;
+    //     obj["data"] = [];
+    //         for (var j = 0; j < this.data.pastDayPrices.length; j++) {
+    //             var thisPair = 
                 
-            }
-    }
+    //         }
+    // }
 
 
 
@@ -45,12 +45,6 @@ ScatterChart.prototype.render = function(){
     //         }
     //         obj["data"].push(prices);
     //         scatterChartObjects.push(obj);
-    
-
-    // for loop to pull out graph data goes here
-    // scatter data goes in and x the y pairings.
-    // each object has a name, colour (how to generate?) and an array of arrays, each of which is x: time, y: amount.
-
 
     // new format of share object.
     // {
