@@ -1,26 +1,27 @@
-var ScatterChart = function( refresh ){
+var ScatterChart = function( refresh, container ){
     this.data = null;
     this.refresh = refresh;
+    this.container = container;
 }
 
 ScatterChart.prototype.setData = function( data ){
     this.data = data;
 }
 
-ScatterChart.prototype.render = function(stockData){
+ScatterChart.prototype.render = function(){
 
-    var container = document.getElementById('scatterChart');
+    var stockData = this.data
 
     // for loop to pull out graph data goes here
     // scatter data goes in and x the y pairings.
-    // each object has a name, colour (how to generate?) and an array of arrays, each of which 
-    // 
+    // each object has a name, colour (how to generate?) and an array of arrays, each of which is x: time, y: amount.
 
     var scatterChart = new Highcharts.chart({
         
     chart: {
         type: 'scatter',
-        zoomType: 'xy'
+        zoomType: 'xy',
+        renderTo: this.container
     },
     title: {
         text: 'Revenue vs Day'

@@ -2,7 +2,6 @@ var PieChart = function( refresh, container ) {
   this.data = null;
   this.refresh = refresh;
   this.container = container;
-  console.log( "PieChartContainer =", this.container );
 }
 
 PieChart.prototype.setData = function( data ){

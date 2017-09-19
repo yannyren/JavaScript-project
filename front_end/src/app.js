@@ -22,13 +22,8 @@ App.prototype.refresh = function(){
 
 App.prototype.start = function(){
 
-        console.log( document );
-        console.log( window );
-
         var overviewPageElement = document.getElementById('overviewpage');
-        console.log( "Should be overviewPageElement", overviewPageElement );
         var detailsPageElement = document.getElementById('detailspage');
-        console.log( "Should be detailsPageElement", detailsPageElement);
 
         overviewPageElement.style.display = 'block';
         detailsPageElement.style.display = 'none';
