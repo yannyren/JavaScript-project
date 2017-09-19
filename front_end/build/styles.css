@@ -51,7 +51,6 @@ header{
     background:linear-gradient(top, #aadddd 0%, #77aaaa 100%);
     box-shadow: 2px 2px 4px 2px rgba(40, 40, 40, 0.6);
     cursor: pointer;
-
 } 
 
 .navbutton:hover {
@@ -95,7 +94,21 @@ header{
     width: 15%;
 }
 
-h1 {
-    font-family: 'Times New Roman', Times, serif;
+#valuation {
+    position: relative;
+    left: 650px;
+    top: 450px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: x-large;
+
+}
+
+h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif
     margin-bottom: 10px;
+}
+
+#pieChart {
+    position: relative;
+    top: 10px
 }
