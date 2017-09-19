@@ -7,6 +7,11 @@ var PortfolioView = function( refresh, domElement ){
 PortfolioView.prototype.render = function(){
     var portfolioData = this.data;
     console.log( "should be portfolioData", portfolioData); 
+
+    while( this.domElement.firstChild ) {
+        this.domElement.removeChild( this.domElement.firstChild );
+    }
+
     for (var i = 0; i < portfolioData.length; i++) {
         var option = document.createElement('option');
         option.value = i;

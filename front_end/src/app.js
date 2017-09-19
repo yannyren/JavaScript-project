@@ -6,8 +6,8 @@ var OverviewPage = require( './views/overview_page_view');
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
 
 var App = function(){
-    this.detailsPage = new DetailsPage( this.refresh );
-    this.overviewPage = new OverviewPage( this.refresh );
+    this.detailsPage = new DetailsPage( this.refresh.bind(this) );
+    this.overviewPage = new OverviewPage( this.refresh.bind(this) );
 }
 
 App.prototype.refresh = function(){
@@ -17,7 +17,7 @@ App.prototype.refresh = function(){
             this.overviewPage.setData( data );
             this.detailsPage.render();
             this.overviewPage.render();
-        }.bind( this ))
+        }.bind(this))
 }
 
 App.prototype.start = function(){
