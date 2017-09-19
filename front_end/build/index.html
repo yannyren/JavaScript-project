@@ -15,13 +15,10 @@
 <body>
 
     <header>
-
-        <img id='companylogo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
-        <!-- <h1>Stock Overflow</h1> -->
-        <nav>   
-       
-        <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
-        <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
+        <nav class="nav-bar">
+            <img id='companylogo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
+            <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
+            <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
         </nav>
     </header>
 
@@ -37,7 +34,7 @@
     <div id="detailspage" class="pageview">
             <h1>Detail Section</h1>
 
-            <!--make this list into a select list  -->
+            <div id="scatterChart"></div>
             <select id="portfolio-list" size="6" multiple></select>
 
             <ul id="news-feed"></ul>
