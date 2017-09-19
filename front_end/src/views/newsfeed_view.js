@@ -1,14 +1,11 @@
-var NewsFeedView = function(){
-
+var NewsFeedView = function( refresh ){
+    this.data = null;
+    this.refresh = refresh;
 }
 
-NewsFeedView.prototype.render = function(twitterData){
+NewsFeedView.prototype.render = function(newsData){
     var newsFeed = document.querySelector('#news-feed');
         for (var i = 0; i < array.length; i++) {
-            
-            // check how an 'article' looks in the view. Might need to insert multiple elements 
-            // for header, link to story, etc. 
-
             var newsItem = document.createElement('article');
             newsItem.value = i;
             newsItem.innerText = twitterData[i];
