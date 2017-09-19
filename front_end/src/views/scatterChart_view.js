@@ -10,11 +10,37 @@ ScatterChart.prototype.setData = function( data ){
 
 ScatterChart.prototype.render = function(){
 
-    var stockData = this.data
+    // var stockData = this.data
+
+    scatterChartObjects = [];
+
+    for (var i = 0; i < this.data.length; i++) {
+        var obj = {};
+        obj["name"] = this.data[i].name;
+        obj["data"] = function(){
+            
+        }
+    }
 
     // for loop to pull out graph data goes here
     // scatter data goes in and x the y pairings.
     // each object has a name, colour (how to generate?) and an array of arrays, each of which is x: time, y: amount.
+
+
+    // new format of share object.
+    // {
+    //   "name": "Fusionex",
+    //   "epic":"FXI",
+    //   "price": 120.00,
+    //   "quantity": 2000,
+    //   "buyPrice": 80.00,
+    //   "dateLastUpdate": null,
+    //   "pastMinutePrices": [],
+    //   "pastDayPrices": [92.00, 89.00, 103.00, 125.00, 108.00, 98.00, 110.00],
+    //   "pastWeekPrices": [],
+    //   "pastMonthPrices": [],
+    //   "buyDate":"2014-11-15"
+    // },
 
     var scatterChart = new Highcharts.chart({
         
