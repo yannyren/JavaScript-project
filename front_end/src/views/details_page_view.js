@@ -12,6 +12,10 @@ var DetailsPage = function( refresh ) {
     scatterChartContainer = document.querySelector( '#scatterChart')
     scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
 
+    portfolioViewSelect.addEventListener( "change", function( event ){
+        scatterChart.setSeries( event.target.value );
+        scatterChart.render();
+    })
 
     var addShareButton = document.querySelector( "#add-share" );
     addShareButton.addEventListener( "click", this.addShares.bind(this) );

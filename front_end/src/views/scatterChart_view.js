@@ -1,4 +1,5 @@
 var ScatterChart = function( refresh, container ){
+   this.series = 0;
    this.data = null;
    this.refresh = refresh;
    this.container = container;
@@ -6,6 +7,10 @@ var ScatterChart = function( refresh, container ){
 
 ScatterChart.prototype.setData = function( data ){
    this.data = data;
+}
+
+ScatterChart.prototype.setSeries = function( series ){
+    this.series = series;
 }
 
 ScatterChart.pair = function(x, y){
@@ -19,17 +24,15 @@ ScatterChart.prototype.render = function(){
 
    var scatterObjects = [];
   
-   for (var i = 0; i < this.data.length; i++) {
        var obj = {};
-       obj["name"] = this.data[i].name;
+       obj["name"] = this.data[this.series].name;
        obj["data"] = [];
 
-           for (var j = 0; j < this.data[i].pastCloseOfDayPrices.length; j++) {
-               var thisPair = ScatterChart.pair( j+1, this.data[i].pastCloseOfDayPrices[j] );
+           for (var j = 0; j < this.data[this.series].pastCloseOfDayPrices.length; j++) {
+               var thisPair = ScatterChart.pair( j+1, this.data[this.series].pastCloseOfDayPrices[j] );
                obj["data"].push(thisPair); 
            }
            scatterObjects.push(obj);
-   }
 
    var scatterChart = new Highcharts.chart({
       
