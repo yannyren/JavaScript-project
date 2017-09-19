@@ -1,46 +1,55 @@
-var PortfolioView = require('./views/portfolio_view');
-var PieChart = require( './views/portfolioPieChart_view');
 var AjaxRequest = require( './services/ajax_request.js');
-var FunctionBlock = require('./models/function_block');
-var ScatterChart = require('./views/scatterChart_view');
-portfolioView = new PortfolioView();
-pieChart = new PieChart();
-scatterChart = new ScatterChart();
+var DetailsPage = require( './views/details_page_view');
+var OverviewPage = require( './views/overview_page_view');
 
-var afterAjax = new FunctionBlock();
-afterAjax.addFunction(pieChart.render);
-afterAjax.addFunction(portfolioView.render);
-// afterAjax.addFunction(scatterChart.render);
-var seedData = new AjaxRequest("http://localhost:3001/api/portfolio");
-seedData.get(afterAjax);
+// var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
+// var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
 
-
-var app = function(){
-
-    var openingPage = function(){
-        var overviewPage = document.getElementById('overviewpage'); 
-        overviewPage.style.display = 'block';
-        var detailsPage = document.getElementById('detailspage');
-        detailsPage.style.display = 'none';
-    }
-    openingPage();
-
-    var overviewbtn = document.getElementById('overviewbtn');
-    overviewbtn.addEventListener('click', function() {
-        var overviewPage = document.getElementById('overviewpage');
-        overviewPage.style.display = "block";
-        var detailsPage = document.getElementById('detailspage');
-        detailsPage.style.display = "none";
-    })
-
-    var detailsbtn = document.getElementById('detailsbtn')
-    detailsbtn.addEventListener('click', function() {
-        var detailsPage = document.getElementById('detailspage');
-        detailsPage.style.display = 'block';
-        var overviewPage = document.getElementById('overviewpage');
-        overviewPage.style.display = 'none';
-    })
-
+var App = function(){
+    this.detailsPage = new DetailsPage( this.refresh );
+    this.overviewPage = new OverviewPage( this.refresh );
 }
 
-window.addEventListener('load', app); 
+App.prototype.refresh = function(){
+        var requestData = new AjaxRequest( "http://localhost:3001/api/portfolio" );
+        requestData.get( function( data ){
+            this.detailsPage.setData( data );
+            this.overviewPage.setData( data );
+            this.detailsPage.render();
+            this.overviewPage.render();
+        }.bind( this ))
+}
+
+App.prototype.start = function(){
+
+        console.log( document );
+        console.log( window );
+
+        var overviewPageElement = document.getElementById('overviewpage');
+        console.log( "Should be overviewPageElement", overviewPageElement );
+        var detailsPageElement = document.getElementById('detailspage');
+        console.log( "Should be detailsPageElement", detailsPageElement);
+
+        overviewPageElement.style.display = 'block';
+        detailsPageElement.style.display = 'none';
+
+        var overviewbtn = document.getElementById('overviewbtn');
+        overviewbtn.addEventListener('click', function() {
+            overviewPageElement.style.display = "block";
+            detailsPageElement.style.display = "none";
+        })
+
+        var detailsbtn = document.getElementById('detailsbtn')
+        detailsbtn.addEventListener('click', function() {
+            detailsPageElement.style.display = 'block';
+            overviewPageElement.style.display = 'none';
+        })
+
+        this.refresh();
+}
+
+
+window.addEventListener('load', function(){
+    var app = new App();
+    app.start();
+}); 

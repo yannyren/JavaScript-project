@@ -1,16 +1,22 @@
-var PortfolioView = function(){
-
+var PortfolioView = function( refresh, domElement ){
+    this.data = null;
+    this.refresh = refresh;
+    this.domElement = domElement;
 }
 
-PortfolioView.prototype.render = function(portfolioData){
+PortfolioView.prototype.render = function(){
+    var portfolioData = this.data;
     console.log( "should be portfolioData", portfolioData); 
-    var portfolioList = document.getElementById('portfolio-list');
     for (var i = 0; i < portfolioData.length; i++) {
         var option = document.createElement('option');
         option.value = i;
         option.innerText = portfolioData[i].name;
-        portfolioList.appendChild(option);
+        this.domElement.appendChild(option);
     }
+}
+
+PortfolioView.prototype.setData = function( data ){
+    this.data = data;
 }
 
 module.exports = PortfolioView;

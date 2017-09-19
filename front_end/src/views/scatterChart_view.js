@@ -1,5 +1,10 @@
-var ScatterChart = function(){
+var ScatterChart = function( refresh ){
+    this.data = null;
+    this.refresh = refresh;
+}
 
+ScatterChart.prototype.setData = function( data ){
+    this.data = data;
 }
 
 ScatterChart.prototype.render = function(stockData){
