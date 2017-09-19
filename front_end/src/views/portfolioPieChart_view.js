@@ -1,11 +1,17 @@
-var PieChart = function() {
-
+var PieChart = function( refresh, container ) {
+  this.data = null;
+  this.refresh = refresh;
+  this.container = container;
 }
 
-PieChart.prototype.render = function(stockData) {
+PieChart.prototype.setData = function( data ){
+  this.data = data;
+}
+
+PieChart.prototype.render = function() {
   
-  var container = document.getElementById("pieChart");
-    
+    var stockData = this.data;
+
     var pieChartObjects = [];
 
     for (var i = 0; i < stockData.length; i++) {
@@ -23,7 +29,7 @@ PieChart.prototype.render = function(stockData) {
         plotBorderWidth: null,
         plotShadow: false,
         type: 'pie',
-        renderTo: container
+        renderTo: this.container
       },
       title: 
       { 
