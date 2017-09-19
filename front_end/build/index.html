@@ -7,6 +7,8 @@
     <title>Stock Overflow</title>
     <link rel="icon" href="./images/stock_overflow_logo.png">
     <link rel="stylesheet" type="text/css" href="styles.css" media="screen">
+    <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>    
     
     <script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>    
     
@@ -29,26 +31,29 @@
 
 
     <div id="overviewpage" class="pageview">
+
             <h1>Portfolio Over View</h2>
             <div id = "valuation">Total Valuation:</div>
-            <div id="pieChart"></div>    
+            <div id="pieChart"></div>
+            <div id="valuation"></div>    
     </div>
 
 
        
     <div id="detailspage" class="pageview">
+
         <h1>Share Details</h1>
 
-        <section id="buy-share">   
-            Name:
-            <input type="text" id="new-name">            
-            EPIC:
-            <input type="text" id="new-epic">
-            Number:
-            <input type="text" id="new-number">
-            Buy Price:
-            <input type="text" id="new-buy-price">
-            <button id="add-share" type="button">Buy</button>
+        <section id="buy-share">
+                Name:
+                <input type="text" id="new-name">            
+                EPIC:
+                <input type="text" id="new-epic">
+                Number:
+                <input type="text" id="new-number">
+                Buy Price:
+                <input type="text" id="new-buy-price">
+                <button id="add-share" type="button">Buy</button>
         </section>
 
         <section class="list-scatterchart-news-section">
@@ -62,6 +67,10 @@
             <ul id="news-feed"></ul>
                 <li>Test 1</li>
                 <li>Test 2</li>
+                
+            <p id="gradient"></p>
+                Next 7 days price predictions (cents):
+            <p id="prediction"></p>
 
         </section>
 
