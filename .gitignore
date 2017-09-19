@@ -1,4 +1,4 @@
 node_modules
 front_end/src/APIKeys.js
-bundle.js
-bundle.js.map
+front_end/build/bundle.js
+front_end/build/bundle.js.map
