@@ -2,19 +2,21 @@ var PortfolioView = require('./views/portfolio_view');
 var PieChart = require( './views/portfolioPieChart_view');
 var AjaxRequest = require( './services/ajax_request.js');
 var FunctionBlock = require('./models/function_block');
+var ScatterChart = require('./views/scatterChart_view');
 portfolioView = new PortfolioView();
 pieChart = new PieChart();
+scatterChart = new ScatterChart();
 
 var afterAjax = new FunctionBlock();
 afterAjax.addFunction(pieChart.render);
 afterAjax.addFunction(portfolioView.render);
-
+// afterAjax.addFunction(scatterChart.render);
 var seedData = new AjaxRequest("http://localhost:3001/api/portfolio");
 seedData.get(afterAjax);
 
 
 var app = function(){
-    
+
     var openingPage = function(){
         var overviewPage = document.getElementById('overviewpage'); 
         overviewPage.style.display = 'block';
