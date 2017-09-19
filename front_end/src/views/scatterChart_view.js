@@ -62,7 +62,7 @@ ScatterChart.prototype.render = function(){
        renderTo: this.container
    },
    title: {
-       text: 'Revenue vs Day'
+       text: this.data[this.series].name
    },
    credits:
    {
@@ -72,28 +72,41 @@ ScatterChart.prototype.render = function(){
        text: ''
    },
    xAxis: {
+       gridLineWidth: 0,
+       tickLength: 5,
+       tickWidth: 2,
+       tickPosition: 'outside',
        title: {
-           enabled: true,
            text: 'Time (days) '
        },
+       lineWidth: 2,
+       startOnTick: false,
+       endOnTick: false,
+       showLastLabel: true
+   },
+   yAxis: {
+       gridLineWidth: 0,
+       tickLength: 5,
+       tickWidth: 2,
+       tickPosition: 'outside',
+       title: {
+           text: 'Closing Price (cents)'
+       },
+       lineWidth: 2,
        startOnTick: true,
        endOnTick: true,
        showLastLabel: true
    },
-   yAxis: {
-       title: {
-           text: 'Closing Price (cents)'
-       }
-   },
    legend: {
-       layout: 'vertical',
-       align: 'left',
-       verticalAlign: 'top',
-       x: 50,
-       y: 300,
-       floating: true,
-       backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
-       borderWidth: 0
+       enabled: false
+    //    layout: 'vertical',
+    //    align: 'left',
+    //    verticalAlign: 'top',
+    //    x: 50,
+    //    y: 300,
+    //    floating: true,
+    //    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+    //    borderWidth: 0
    },
    plotOptions: {
        scatter: {
