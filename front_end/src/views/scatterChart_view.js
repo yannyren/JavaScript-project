@@ -79,6 +79,10 @@ ScatterChart.prototype.render = function(){
         backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
         borderWidth: 1
     },
+    credits: 
+    {
+      enabled: false
+    },
     plotOptions: {
         scatter: {
             marker: {

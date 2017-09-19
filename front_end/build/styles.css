@@ -70,3 +70,32 @@ header{
     top: 10px;
     clear: both;
 }
+
+
+
+.list-scatterchart-news-section {
+    display: inline-flex;
+    background-color: red;
+    width: 100%;
+    margin: 10px 15px;
+    min-height: 400px
+
+}
+
+#scatterChart{
+    width: 60%;
+}
+
+#news-feed{
+    width: 25%;
+    background-color: blue;
+}
+
+#portfolio-list {
+    width: 15%;
+}
+
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+}
