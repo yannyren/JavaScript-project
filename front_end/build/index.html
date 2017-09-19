@@ -29,7 +29,7 @@
 
 
     <div id="overviewpage" class="pageview">
-            <h1>Over View Section</h2>
+            <h1>Portfolio Over View</h2>
             <div id = "valuation">Total Valuation:</div>
             <div id="pieChart"></div>    
     </div>
@@ -37,21 +37,9 @@
 
        
     <div id="detailspage" class="pageview">
-            <h1>Detail Section</h1>
+        <h1>Share Details</h1>
 
-            <section class="list-scatterchart-news-section">
-           
-            <select id="portfolio-list" size="8" multiple></select>
-
-            <div id="scatterChart"></div>
-
-            <ul id="news-feed"></ul>
-               <li>Test 1</li>
-               <li>Test 2</li>
-
-            </section>
-
-            
+        <section id="buy-share">   
             Name:
             <input type="text" id="new-name">            
             EPIC:
@@ -60,7 +48,24 @@
             <input type="text" id="new-number">
             Buy Price:
             <input type="text" id="new-buy-price">
-            <button id="add-share" type=button>Add</button>
+            <button id="add-share" type="button">Buy</button>
+        </section>
+
+        <section class="list-scatterchart-news-section">
+            <div class="holding-list">
+                <h2 id="holding-list-title">Holdings List</h2>
+                <select id="portfolio-list" multiple></select>
+            </div>
+
+            <div id="scatterChart"></div>
+
+            <ul id="news-feed"></ul>
+                <li>Test 1</li>
+                <li>Test 2</li>
+
+        </section>
+
+            
 
     </div>
 

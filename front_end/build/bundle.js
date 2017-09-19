@@ -68,8 +68,8 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var AjaxRequest = __webpack_require__( 3);
-var DetailsPage = __webpack_require__( 7);
-var OverviewPage = __webpack_require__( 8);
+var DetailsPage = __webpack_require__( 5);
+var OverviewPage = __webpack_require__( 7);
 
 // var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
@@ -282,7 +282,63 @@ module.exports = AjaxRequest;
 
 /***/ }),
 /* 4 */,
-/* 5 */,
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var PortfolioView = __webpack_require__(1);
+var ScatterChart = __webpack_require__(6);
+var AjaxRequest = __webpack_require__( 3 );
+
+var DetailsPage = function( refresh ) {
+    this.data = null;
+    this.refresh = refresh;
+
+    //grab dom elements
+    portfolioViewSelect = document.querySelector('#portfolio-list')
+    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
+    scatterChartContainer = document.querySelector( '#scatterChart')
+    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+
+
+    var addShareButton = document.querySelector( "#add-share" );
+    addShareButton.addEventListener( "click", this.addShares.bind(this) );
+
+}
+
+DetailsPage.prototype.render = function(){
+    portfolioView.setData( this.data );
+    scatterChart.setData( this.data );
+    portfolioView.render();
+    scatterChart.render();
+}
+
+DetailsPage.prototype.setData = function( data ){
+    this.data = data;
+}
+
+DetailsPage.prototype.addShares = function(){
+    var newName = document.querySelector( "#new-name" );
+    var newEpicText = document.querySelector( "#new-epic" );
+    var newNumber = document.querySelector( "#new-number" );
+    var newBuyPrice = document.querySelector( "#new-buy-price" );
+    var newShare = {
+        "name": newName.value,
+        "epic": newEpicText.value,
+        "price": newBuyPrice.value,
+        "quantity": newNumber.value,
+        "buyPrice": newBuyPrice.value,
+        "buyDate": new Date().toISOString().split('T')[0]
+    }
+    console.log( newShare );
+    var postShare = new AjaxRequest( "http://localhost:3001/api/portfolio" );
+    console.log( "this.refresh in addShares", this );
+    postShare.post( newShare, this.refresh );
+
+}
+
+module.exports = DetailsPage;
+
+/***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
@@ -385,6 +441,10 @@ ScatterChart.prototype.render = function(){
         floating: true,
         backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
         borderWidth: 1
+    },
+    credits: 
+    {
+      enabled: false
     },
     plotOptions: {
         scatter: {
@@ -532,65 +592,8 @@ module.exports = ScatterChart;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var PortfolioView = __webpack_require__(1);
-var ScatterChart = __webpack_require__(6);
-var AjaxRequest = __webpack_require__( 3 );
-
-var DetailsPage = function( refresh ) {
-    this.data = null;
-    this.refresh = refresh;
-
-    //grab dom elements
-    portfolioViewSelect = document.querySelector('#portfolio-list')
-    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
-    scatterChartContainer = document.querySelector( '#scatterChart')
-    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
-
-
-    var addShareButton = document.querySelector( "#add-share" );
-    addShareButton.addEventListener( "click", this.addShares.bind(this) );
-
-}
-
-DetailsPage.prototype.render = function(){
-    portfolioView.setData( this.data );
-    scatterChart.setData( this.data );
-    portfolioView.render();
-    scatterChart.render();
-}
-
-DetailsPage.prototype.setData = function( data ){
-    this.data = data;
-}
-
-DetailsPage.prototype.addShares = function(){
-    var newName = document.querySelector( "#new-name" );
-    var newEpicText = document.querySelector( "#new-epic" );
-    var newNumber = document.querySelector( "#new-number" );
-    var newBuyPrice = document.querySelector( "#new-buy-price" );
-    var newShare = {
-        "name": newName.value,
-        "epic": newEpicText.value,
-        "price": newBuyPrice.value,
-        "quantity": newNumber.value,
-        "buyPrice": newBuyPrice.value,
-        "buyDate": new Date().toISOString().split('T')[0]
-    }
-    console.log( newShare );
-    var postShare = new AjaxRequest( "http://localhost:3001/api/portfolio" );
-    console.log( "this.refresh in addShares", this );
-    postShare.post( newShare, this.refresh );
-
-}
-
-module.exports = DetailsPage;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var PieChart = __webpack_require__( 2);
-var Valuation = __webpack_require__( 12);
+var Valuation = __webpack_require__( 8);
 
 var OverviewPage = function( refresh ) {
     this.data = null;
@@ -617,10 +620,7 @@ OverviewPage.prototype.setData = function( data ){
 module.exports = OverviewPage;
 
 /***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var Valuation = function (refresh, container) {
