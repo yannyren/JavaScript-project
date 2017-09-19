@@ -63,13 +63,19 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 var AjaxRequest = __webpack_require__( 3);
+<<<<<<< HEAD
 var DetailsPage = __webpack_require__( 8);
 var OverviewPage = __webpack_require__( 10);
+=======
+var DetailsPage = __webpack_require__( 465);
+var OverviewPage = __webpack_require__( 466);
+>>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
 
 // var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
@@ -119,7 +125,8 @@ window.addEventListener('load', function(){
 }); 
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports) {
 
 var PortfolioView = function( refresh, domElement ){
@@ -146,7 +153,8 @@ PortfolioView.prototype.setData = function( data ){
 module.exports = PortfolioView;
 
 /***/ }),
-/* 2 */
+
+/***/ 2:
 /***/ (function(module, exports) {
 
 var PieChart = function( refresh, container ) {
@@ -237,7 +245,8 @@ Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, 
 module.exports = PieChart;
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /***/ (function(module, exports) {
 
 var AjaxRequest = function(url) {
@@ -276,6 +285,7 @@ AjaxRequest.prototype.post = function(sendData, callback) {
 module.exports = AjaxRequest;
 
 /***/ }),
+<<<<<<< HEAD
 /* 4 */,
 /* 5 */,
 /* 6 */,
@@ -286,6 +296,14 @@ module.exports = AjaxRequest;
 var PortfolioView = __webpack_require__(1);
 var ScatterChart = __webpack_require__(9);
 var AjaxRequest = __webpack_require__( 3 );
+=======
+
+/***/ 465:
+/***/ (function(module, exports, __webpack_require__) {
+
+var PortfolioView = __webpack_require__(1);
+var ScatterChart = __webpack_require__(5);
+>>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
 
 var DetailsPage = function( refresh ) {
     this.data = null;
@@ -337,7 +355,76 @@ DetailsPage.prototype.addShares = function(){
 module.exports = DetailsPage;
 
 /***/ }),
+<<<<<<< HEAD
 /* 9 */
+=======
+
+/***/ 466:
+/***/ (function(module, exports, __webpack_require__) {
+
+var PieChart = __webpack_require__( 2);
+var Valuation = __webpack_require__( 467);
+
+var OverviewPage = function( refresh ) {
+    this.data = null;
+    this.refresh = refresh;
+
+    //grab dom elements
+    pieChartContainer = document.querySelector( '#pieChart' );
+    pieChart = new PieChart( this.refresh, pieChartContainer );
+    totalValuation = document.querySelector( '#valuation');
+    valuation = new Valuation (this.refresh, totalValuation);
+}
+
+OverviewPage.prototype.render = function(){
+    pieChart.setData( this.data );
+    pieChart.render();
+    valuation.setData( this.data);
+    valuation.render();
+}
+
+OverviewPage.prototype.setData = function( data ){
+    this.data = data;
+}
+
+module.exports = OverviewPage;
+
+/***/ }),
+
+/***/ 467:
+/***/ (function(module, exports) {
+
+var Valuation = function (refresh, container) {
+    this.data = null;
+    this.refresh = refresh;
+    this.container = container
+}
+
+Valuation.prototype.setData = function ( data ){
+    this.data = data;
+}
+
+Valuation.prototype.render = function() {
+    var totalValuation = 0;
+    var stockData = this.data;
+    
+    stockData.forEach(function(stock) {
+        totalValuation += (stock.quantity * stock.price);
+    });
+
+    totalValuation = totalValuation/100;
+    
+    totalValuation = totalValuation.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    this.container.innerText = "Total Valuation: $" + (totalValuation); 
+}
+
+module.exports = Valuation;
+
+/***/ }),
+
+/***/ 5:
+>>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
 /***/ (function(module, exports) {
 
 var ScatterChart = function( refresh, container ){
@@ -352,11 +439,37 @@ ScatterChart.prototype.setData = function( data ){
 
 ScatterChart.prototype.render = function(){
 
-    var stockData = this.data
+    // var stockData = this.data
+
+    scatterChartObjects = [];
+
+    for (var i = 0; i < this.data.length; i++) {
+        var obj = {};
+        obj["name"] = this.data[i].name;
+        obj["data"] = function(){
+            
+        }
+    }
 
     // for loop to pull out graph data goes here
     // scatter data goes in and x the y pairings.
     // each object has a name, colour (how to generate?) and an array of arrays, each of which is x: time, y: amount.
+
+
+    // new format of share object.
+    // {
+    //   "name": "Fusionex",
+    //   "epic":"FXI",
+    //   "price": 120.00,
+    //   "quantity": 2000,
+    //   "buyPrice": 80.00,
+    //   "dateLastUpdate": null,
+    //   "pastMinutePrices": [],
+    //   "pastDayPrices": [92.00, 89.00, 103.00, 125.00, 108.00, 98.00, 110.00],
+    //   "pastWeekPrices": [],
+    //   "pastMonthPrices": [],
+    //   "buyDate":"2014-11-15"
+    // },
 
     var scatterChart = new Highcharts.chart({
         
@@ -537,6 +650,7 @@ ScatterChart.prototype.render = function(){
 
 module.exports = ScatterChart;
 
+<<<<<<< HEAD
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -563,6 +677,9 @@ OverviewPage.prototype.setData = function( data ){
 
 module.exports = OverviewPage;
 
+=======
+>>>>>>> 1f64c81b2ea6e01a0bac55b22f7e150fc26027c3
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=bundle.js.map
