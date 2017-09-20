@@ -1,6 +1,7 @@
 var PieChart = require( './portfolioPieChart_view');
 var Valuation = require( './valuation_view');
 var TotalChart = require( './totalChart_view' ); 
+var SingleLineValuation = require( './single_stock_line_valuation');
 
 var OverviewPage = function( refresh ) {
     this.data = null;
@@ -13,6 +14,9 @@ var OverviewPage = function( refresh ) {
     valuation = new Valuation (this.refresh, totalValuation);
     totalChartContainer = document.querySelector( '#total-chart' );
     totalChart = new TotalChart( this.refresh, totalChartContainer );
+    singleLineValuesContainer = document.querySelector('#singlelinevaluations');
+    console.log(singleLineValuesContainer);
+    singleLineValuesData = new SingleLineValuation(this.refresh, singleLineValuesContainer);
 }
 
 OverviewPage.prototype.render = function(){
@@ -22,6 +26,8 @@ OverviewPage.prototype.render = function(){
     valuation.render();
     totalChart.setData( this.data );
     totalChart.render();
+    singleLineValuesData.setData(this.data);
+    singleLineValuesData.render();
 }
 
 OverviewPage.prototype.setData = function( data ){
