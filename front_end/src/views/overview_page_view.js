@@ -1,5 +1,6 @@
 var PieChart = require( './portfolioPieChart_view');
 var Valuation = require( './valuation_view');
+var TotalChart = require( './totalChart_view' ); 
 
 var OverviewPage = function( refresh ) {
     this.data = null;
@@ -10,6 +11,8 @@ var OverviewPage = function( refresh ) {
     pieChart = new PieChart( this.refresh, pieChartContainer );
     totalValuation = document.querySelector( '#valuation');
     valuation = new Valuation (this.refresh, totalValuation);
+    totalChartContainer = document.querySelector( '#total-chart' );
+    totalChart = new TotalChart( this.refresh, totalChartContainer );
 }
 
 OverviewPage.prototype.render = function(){
@@ -17,6 +20,8 @@ OverviewPage.prototype.render = function(){
     pieChart.render();
     valuation.setData( this.data);
     valuation.render();
+    totalChart.setData( this.data );
+    totalChart.render();
 }
 
 OverviewPage.prototype.setData = function( data ){
