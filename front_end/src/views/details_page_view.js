@@ -20,9 +20,9 @@ var DetailsPage = function( refresh ) {
     portfolioViewSelect.addEventListener( "change", function( event ){
         scatterChart.setSeries( event.target.value );
         scatterChart.render();
-        
+
         newsView.setSeries( event.target.value );
-        newsView.getData();
+        newsView.getNewsData();
 
     })
 

@@ -43,22 +43,16 @@ NewsFeedView.prototype.render = function( newsData ){
     while( this.domElement.firstChild ) {
         this.domElement.removeChild( this.domElement.firstChild );
     }
-    // //append list items from newsData to this.domElement
     for (var i = 0; i < newsData.length; i++) {
-        // var articleContainer = document.createElement('li');
         var articleBody = document.createElement('article');
         articleBody.setAttribute("id", "article-body");
         var date = document.createElement('p');
         var summary = document.createElement('p');
         var link = document.createElement('p');
-        // date.innerText = newsData[i].date;
         summary.innerText = newsData[i].summary;
         link.innerText = newsData[i].link;
-        
-        // articleBody.appendChild(date);
         articleBody.appendChild(summary);
         articleBody.appendChild(link);
-        // articleContainer.appendChild(articleBody);
         console.log("this.domElement: ", this.domElement);
         this.domElement.appendChild(articleBody);
     }
