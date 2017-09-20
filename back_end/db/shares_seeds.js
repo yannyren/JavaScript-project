@@ -1,5 +1,7 @@
 use stockoverflow;
 
+db.shares.remove({});
+
 db.shares.insert( 
   [
     {
