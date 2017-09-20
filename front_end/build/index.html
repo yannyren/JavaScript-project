@@ -20,49 +20,58 @@
 <body>
 
     <header>
-        <div id="company-logo">
-           <img id='companylogo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
-        </div>
-        <nav class="nav-bar">
+        <img id='company-logo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
+        
+        <p id="header-blank-section"></p>
+    </header>
+
+    <nav class="nav-bar">
             <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
             <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
-        </nav>
-    </header>
+     </nav>
 
 
     <div id="overviewpage" class="pageview">
-            <h1>Over View Section</h2>
+            <div id="pieChart"></div>
+            <!-- <div id="valuation"></div>     -->
             <div id = "valuation">Total Valuation:</div>
-            <div id="pieChart"></div>    
     </div>
-
-
        
     <div id="detailspage" class="pageview">
-            <h1>Detail Section</h1>
 
-            <section class="list-scatterchart-news-section">
-           
-            <select id="portfolio-list" size="8" multiple></select>
+        <!-- <h1>Share Details</h1> -->
+
+        <section id="buy-share">
+                Name:
+                <input type="text" id="new-name" class="buy-share-input-box">            
+                EPIC:
+                <input type="text" id="new-epic" class="buy-share-input-box">
+                Number:
+                <input type="text" id="new-number" class="buy-share-input-box">
+                Buy Price:
+                <input type="text" id="new-buy-price" class="buy-share-input-box">
+                <button id="add-share" type="button">Buy</button>
+        </section>
+
+        <section class="list-scatterchart-news-section">
+            <div class="holding-list">
+                <h2 id="holding-list-title">Holdings List</h2>
+                <select id="portfolio-list" multiple></select>
+            </div>
 
             <div id="scatterChart"></div>
 
             <ul id="news-feed"></ul>
-               <li>Test 1</li>
-               <li>Test 2</li>
+                <li>Test 1</li>
+                <li>Test 2</li>
+                
+            <p id="gradient"></p>
+                Next 7 days price predictions (cents):
+            <p id="prediction"></p>
 
-            </section>
+        </section>
 
             
-            Name:
-            <input type="text" id="new-name">            
-            EPIC:
-            <input type="text" id="new-epic">
-            Number:
-            <input type="text" id="new-number">
-            Buy Price:
-            <input type="text" id="new-buy-price">
-            <button id="add-share" type=button>Add</button>
 
     </div>
 
