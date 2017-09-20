@@ -48,9 +48,11 @@ NewsFeedView.prototype.render = function( newsData ){
         link.target = "_blank";
         summary.innerText = newsData[i].summary;
         var linkText = document.createTextNode(newsData[i].link);
+        var lineBreak = document.createElement('hr');
         link.appendChild(linkText);
         articleBody.appendChild(summary);
         articleBody.appendChild(link);
+        articleBody.appendChild(lineBreak);
         this.domElement.appendChild(articleBody);
     }
 }
