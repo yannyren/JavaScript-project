@@ -30,8 +30,8 @@ PieChart.prototype.render = function () {
         enabled: true,
         alpha: 45
       },
-      marginTop: 90,
-      spacingTop: 50,
+      marginTop: 70,
+      spacingTop: 15,
       style: {
         fontFamily: 'Dosis, sans-serif'
       },
