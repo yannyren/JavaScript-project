@@ -7,7 +7,7 @@ var DetailsPage = function( refresh ) {
     this.refresh = refresh;
 
     //grab dom elements
-    portfolioViewSelect = document.querySelector('#portfolio-list')
+    portfolioViewSelect = document.querySelector('#portfolio-list');
     portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
     scatterChartContainer = document.querySelector( '#scatterChart')
     scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
