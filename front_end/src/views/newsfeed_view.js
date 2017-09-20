@@ -20,7 +20,6 @@ NewsFeedView.prototype.setData = function( data ){
     this.data = data;
 }
 
-// sometimes needs to refresh twice to get a handle on changes, callback issue?
 NewsFeedView.prototype.getNewsData = function(){
     var symbolSuffix = this.data[this.series].epic
     var symbolPrefix = "NASDAQ:"
