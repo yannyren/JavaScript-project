@@ -18,6 +18,8 @@ PortfolioView.prototype.render = function(){
         option.innerText = portfolioData[i].name;
         this.domElement.appendChild(option);
     }
+
+    this.domElement.firstChild.selected = "true";
 }
 
 PortfolioView.prototype.setData = function( data ){

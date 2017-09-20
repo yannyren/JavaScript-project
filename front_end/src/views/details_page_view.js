@@ -17,6 +17,10 @@ var DetailsPage = function( refresh ) {
     newsViewList = document.querySelector('#news-feed');
     newsView = new NewsRequest( this.refresh, newsViewList );
 
+    portfolioViewSelect.addEventListener( "change", function( event ){
+        scatterChart.setSeries( event.target.value );
+        scatterChart.render();
+    })
 
     var addShareButton = document.querySelector( "#add-share" );
     addShareButton.addEventListener( "click", this.addShares.bind(this) );
