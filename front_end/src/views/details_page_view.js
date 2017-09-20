@@ -2,6 +2,8 @@ var PortfolioView = require('./portfolio_view');
 var ScatterChart = require('./scatterChart_view');
 var AjaxRequest = require( '../services/ajax_request.js' );
 
+var NewsFeedView = require( './newsfeed_view.js' );
+
 var DetailsPage = function( refresh ) {
     this.data = null;
     this.refresh = refresh;
@@ -11,10 +13,17 @@ var DetailsPage = function( refresh ) {
     portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
     scatterChartContainer = document.querySelector( '#scatterChart')
     scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+    
+    newsViewList = document.querySelector('#news-feed');
+    newsView = new NewsFeedView( this.refresh, newsViewList );
 
     portfolioViewSelect.addEventListener( "change", function( event ){
         scatterChart.setSeries( event.target.value );
         scatterChart.render();
+        
+        newsView.setSeries( event.target.value );
+        newsView.getData();
+
     })
 
     var addShareButton = document.querySelector( "#add-share" );
@@ -27,6 +36,8 @@ DetailsPage.prototype.render = function(){
     scatterChart.setData( this.data );
     portfolioView.render();
     scatterChart.render();
+    newsView.setData( this.data );
+    newsView.getNewsData();
 }
 
 DetailsPage.prototype.setData = function( data ){
