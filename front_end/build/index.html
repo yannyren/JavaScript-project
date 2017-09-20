@@ -19,37 +19,57 @@
     <header>
         <img id='company-logo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
         
-        <p id="header-blank-section"></p>
+        <p id="header-blank-section">Warning: All prediction is subject to ....No liability ...</p>
     </header>
 
     <nav class="nav-bar">
-            <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
             <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
+            <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
+          
      </nav>
 
-
+        <!-- <h1>Over view page</h1> -->
+        
     <div id="overviewpage" class="pageview">
-            <div id="pieChart"></div>
-            <!-- <div id="valuation"></div>     -->
-            <div id = "valuation">Total Valuation:</div>
-            <div id="total-chart"></div>
-            <p id="total-gradient"></p>
-            Next 7 days valuation predictions ($):
-            <p id="total-prediction"></p>
-            <div id="valuation">Total Valuation:</div>
-            <table id="singlelinevaluations" style="width:100%">
-                <tr>
-                  <th>Stock</th>
-                  <th>Epic</th> 
-                  <th>Quantity</th>
-                  <th>Price</th>
-                  <th>Holding Value</th>
-              </table>
+
+        <div id="detailpage-top-half">
+
+            <section id="piechart-total">
+                <div id="pieChart"></div>
+                <!-- <div id="valuation"></div>     -->
+                <div id = "valuation">Total Valuation:</div>
+            </section>
+
+            <section id="total-chart-gradient">
+                <div id="total-chart"></div>
+                <div id="overview-prediction">
+                    <p id="total-gradient"></p>
+                    Next 7 days valuation predictions ($):
+                    <p id="total-prediction"></p>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="detailpage-bottom-half">
+            <section style="overflow-x:auto;">
+                <table id="singlelinevaluations" style="width:100%">
+                    <tr>
+                    <th>Stock</th>
+                    <th>Epic</th> 
+                    <th>Quantity</th>
+                    <th>Price(Cents)</th>
+                    <th>Holding Value</th>
+                </table>
+            </section>
+        </div>
+
     </div>
+
+
+ <!-- <h1>Share Details</h1> -->
        
     <div id="detailspage" class="pageview">
-
-        <!-- <h1>Share Details</h1> -->
 
         <section id="buy-share">
                 Name:
@@ -60,30 +80,45 @@
                 <input type="text" id="new-number" class="buy-share-input-box">
                 Buy Price:
                 <input type="text" id="new-buy-price" class="buy-share-input-box">
-                <button id="add-share" type="button">Buy</button>
+                <button id="add-share" type="button">Add</button>
+                
         </section>
 
         <section class="list-scatterchart-news-section">
+
             <div class="holding-list">
-                <h2 id="holding-list-title">Holdings List</h2>
+                <h2 id="holdings-list-title">Holdings List</h2>
                 <select id="portfolio-list" multiple></select>
+                <button id="remove-share" type="button">Remove Selected</button>
             </div>
 
-            <div id="scatterChart"></div>
+            <div id="scatterchart-prediction">
+                <div id="scatterChart"></div>
+                <div id="individual-prediction">
+                    <p id="gradient"></p>
+                    <p>Next 7 days price predictions (cents):</p>
+                    <p id="prediction"></p>
+                </div>
+            </div>
 
-            <ul id="news-feed"></ul>
-                <li>Test 1</li>
-                <li>Test 2</li>
+            <div id="news">
+                <h2 id="news-title">News</h2>
+                <div id="news-feed"></div>
+            </div>
                 
-            <p id="gradient"></p>
-                Next 7 days price predictions (cents):
-            <p id="prediction"></p>
+
 
         </section>
 
             
 
     </div>
+
+    <footer>
+        <p id="team-name">TEAM YBCD PRODUCTION</p> 
+        <p id="copy-right">ALL COPY RIGHTS RESERVED</p>
+        
+    </footer>
 
 </body>
 

@@ -66,6 +66,8 @@ ScatterChart.prototype.render = function(){
    title: {
        text: this.data[this.series].name
    },
+   marginTop: 10,
+   spacingTop: 10,
    credits:
    {
      enabled: false

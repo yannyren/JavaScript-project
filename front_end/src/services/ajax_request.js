@@ -6,10 +6,11 @@ var AjaxRequest = function(url) {
 AjaxRequest.prototype.get = function(callback) {
     var request = new XMLHttpRequest();
     request.open('GET', this.url);
-    console.log( "this.url", this.url );
+    // console.log( "this.url", this.url );
     request.addEventListener('load', function() {
         if (request.status !== 200) return;
         var jsonString = request.responseText;
+        // console.log(jsonString);
         this.data = JSON.parse(jsonString);
         console.log( 'From ajaxrequest', this.data );
         callback(this.data);

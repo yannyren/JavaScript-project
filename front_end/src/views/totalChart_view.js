@@ -72,7 +72,8 @@ TotalChart.prototype.render = function(){
          renderTo: this.container
      },
      title: {
-         enabled: false
+         text: 'Total Trend'
+        //  enabled: false
      },
      credits:
      {
