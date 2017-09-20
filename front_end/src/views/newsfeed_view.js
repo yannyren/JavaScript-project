@@ -34,8 +34,7 @@ NewsFeedView.prototype.getNewsData = function(){
 }
 
 NewsFeedView.prototype.render = function( newsData ){
-    newsData.reverse();
-    console.log("News Data", newsData);   
+    newsData.reverse(); 
     //erase anything in domElement already
     while( this.domElement.firstChild ) {
         this.domElement.removeChild( this.domElement.firstChild );
