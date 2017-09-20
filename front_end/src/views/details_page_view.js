@@ -41,9 +41,11 @@ DetailsPage.prototype.addShares = function(){
     var newShare = {
         "name": newName.value,
         "epic": newEpicText.value,
-        "price": newBuyPrice.value,
-        "quantity": newNumber.value,
-        "buyPrice": newBuyPrice.value,
+        "price": null,
+        "quantity": Number(newNumber.value),
+        "buyPrice": Number(newBuyPrice.value),
+        "lastUpdated": new Date(0).toISOString().split('T')[0],
+        "pastCloseOfDayPrices": [],
         "buyDate": new Date().toISOString().split('T')[0]
     }
     console.log( newShare );

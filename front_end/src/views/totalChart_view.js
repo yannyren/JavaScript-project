@@ -7,6 +7,7 @@ var TotalChart = function( refresh, container ){
 }
 
 TotalChart.prototype.setData = function( data ){
+    console.log( "data at setData for TotalChart", data)
   this.data = data;
 }
 
@@ -33,6 +34,8 @@ TotalChart.showFit = function( data ){
 
 TotalChart.prototype.render = function(){
   
+    console.log( "On TotalChart render, data=", this.data)
+
      var scatterObjects = [];
     
       var obj = {};
@@ -113,8 +116,8 @@ TotalChart.prototype.render = function(){
                  radius: 5,
                  states: {
                      hover: {
-                         enabled: true,
-                         lineColor: 'rgb(100,100,100)'
+                         enabled: false
+                        //  lineColor: 'rgb(100,100,100)'
                      }
                  }
              },

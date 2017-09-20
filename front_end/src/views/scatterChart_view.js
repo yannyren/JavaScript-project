@@ -40,6 +40,8 @@ ScatterChart.prototype.render = function(){
 
    var scatterObjects = [];
   
+    console.log( "In scatterChart, this.data", this.data );
+
     var obj = {};
     obj["name"] = this.data[this.series].name;
     obj["data"] = [];
@@ -106,8 +108,8 @@ ScatterChart.prototype.render = function(){
                radius: 5,
                states: {
                    hover: {
-                       enabled: true,
-                       lineColor: 'rgb(100,100,100)'
+                       enabled: false
+                    //    lineColor: 'rgb(100,100,100)'
                    }
                }
            },
