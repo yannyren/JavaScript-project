@@ -20,39 +20,49 @@
 <body>
 
     <header>
-        <div id="company-logo">
-           <img id='companylogo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
-        </div>
-        <nav class="nav-bar">
+        <img id='company-logo' src="./images/stock_overflow_logo.png"  alt="Company Logo">
+        
+        <p id="header-blank-section"></p>
+    </header>
+
+    <nav class="nav-bar">
             <button id='overviewbtn' class="navbutton" type="button">OVERVIEW</button>
             <button id='detailsbtn' class="navbutton" type="button">DETAILS</button>
-        </nav>
-    </header>
+     </nav>
 
 
     <div id="overviewpage" class="pageview">
-
-            <h1>Portfolio Over View</h2>
-            <div id = "valuation">Total Valuation:</div>
             <div id="pieChart"></div>
-            <div id="valuation"></div>    
+            <!-- <div id="valuation"></div>     -->
+            <div id = "valuation">Total Valuation:</div>
+            <div id="total-chart"></div>
+            <p id="total-gradient"></p>
+            Next 7 days valuation predictions ($):
+            <p id="total-prediction"></p>
+            <div id="valuation">Total Valuation:</div>
+            <table id="singlelinevaluations" style="width:100%">
+                <tr>
+                  <th>Stock</th>
+                  <th>Epic</th> 
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Holding Value</th>
+              </table>
     </div>
-
-
        
     <div id="detailspage" class="pageview">
 
-        <h1>Share Details</h1>
+        <!-- <h1>Share Details</h1> -->
 
         <section id="buy-share">
                 Name:
-                <input type="text" id="new-name">            
+                <input type="text" id="new-name" class="buy-share-input-box">            
                 EPIC:
-                <input type="text" id="new-epic">
+                <input type="text" id="new-epic" class="buy-share-input-box">
                 Number:
-                <input type="text" id="new-number">
+                <input type="text" id="new-number" class="buy-share-input-box">
                 Buy Price:
-                <input type="text" id="new-buy-price">
+                <input type="text" id="new-buy-price" class="buy-share-input-box">
                 <button id="add-share" type="button">Buy</button>
         </section>
 
