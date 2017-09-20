@@ -1,5 +1,5 @@
 html {
-    font-family: Georgia, serif;
+    font-family: Georgia, Times New Roman, Times, serif;
 }
 
 header{
@@ -189,13 +189,14 @@ tr:hover {background-color: #f5f5f5}
 #holdings-list-title {
     margin: 0px, 0px, 0px,0px;
     padding: 0px, 0px, 0px, 0px;
-    background-color: yellow;
+    background-color: yellowgreen;
 }
+
 
 #portfolio-list {
     width: 100%;
     font-size: 14px;
-    height: 74%;
+    height: 88%;
     margin: 0px;
     background: rgba(238, 243, 242, 0.95);
 }
@@ -203,18 +204,39 @@ tr:hover {background-color: #f5f5f5}
 #scatterchart-prediction{
     width: 50%;
     height: 100%;
-    background:blueviolet;
+    /* background:blueviolet; */
     padding: 15px;
+    background: #9AC4A3;
+
+}
+
+#individual-prediction {
+    /* display: block; */
+    margin: 0 auto;
+    text-align: center;
+    font-size: bold;
+}
+
+#news {
+    display: block;
+    width: 30%
+}
+
+#news-title {
+    margin: 0px, 0px, 0px,0px;
+    padding: 0px, 0px, 0px, 0px;
+    background: yellowgreen;
 }
 
 #news-feed{
-    width: 20%;
     background-color: #DEDEEE;
-    height: 600px;
+    height: 450px;
     width:100%;
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: scroll;
+    margin: 0px;
+    padding: 0px;
 }
 
 
@@ -223,7 +245,7 @@ footer {
     height: 60px;
     text-align-last: center;
     background-color: #DDF0B5;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     padding-top:10px;
     margin-top: 20px;
