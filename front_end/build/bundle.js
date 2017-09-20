@@ -63,14 +63,13 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var AjaxRequest = __webpack_require__( 3);
-var DetailsPage = __webpack_require__( 465);
-var OverviewPage = __webpack_require__( 466);
+var DetailsPage = __webpack_require__( 7);
+var OverviewPage = __webpack_require__( 8);
 
 // var detailsPage = new DetailsPage( app.refresh, detailsPageElement  );
 // var overviewPage = new OverviewPage( app.refresh, overviewPageElement );
@@ -120,8 +119,7 @@ window.addEventListener('load', function(){
 }); 
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, exports) {
 
 var PortfolioView = function( refresh, domElement ){
@@ -153,8 +151,7 @@ PortfolioView.prototype.setData = function( data ){
 module.exports = PortfolioView;
 
 /***/ }),
-
-/***/ 2:
+/* 2 */
 /***/ (function(module, exports) {
 
 var PieChart = function (refresh, container) {
@@ -261,8 +258,7 @@ PieChart.prototype.render = function () {
 module.exports = PieChart;
 
 /***/ }),
-
-/***/ 3:
+/* 3 */
 /***/ (function(module, exports) {
 
 var AjaxRequest = function(url) {
@@ -301,130 +297,9 @@ AjaxRequest.prototype.post = function(sendData, callback) {
 module.exports = AjaxRequest;
 
 /***/ }),
-
-/***/ 465:
-/***/ (function(module, exports, __webpack_require__) {
-
-var PortfolioView = __webpack_require__(1);
-var ScatterChart = __webpack_require__(5);
-var AjaxRequest = __webpack_require__( 3 );
-
-var DetailsPage = function( refresh ) {
-    this.data = null;
-    this.refresh = refresh;
-
-    //grab dom elements
-    portfolioViewSelect = document.querySelector('#portfolio-list')
-    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
-    scatterChartContainer = document.querySelector( '#scatterChart')
-    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
-
-
-    var addShareButton = document.querySelector( "#add-share" );
-    addShareButton.addEventListener( "click", this.addShares.bind(this) );
-
-}
-
-DetailsPage.prototype.render = function(){
-    portfolioView.setData( this.data );
-    scatterChart.setData( this.data );
-    portfolioView.render();
-    scatterChart.render();
-}
-
-DetailsPage.prototype.setData = function( data ){
-    this.data = data;
-}
-
-DetailsPage.prototype.addShares = function(){
-    var newName = document.querySelector( "#new-name" );
-    var newEpicText = document.querySelector( "#new-epic" );
-    var newNumber = document.querySelector( "#new-number" );
-    var newBuyPrice = document.querySelector( "#new-buy-price" );
-    var newShare = {
-        "name": newName.value,
-        "epic": newEpicText.value,
-        "price": newBuyPrice.value,
-        "quantity": newNumber.value,
-        "buyPrice": newBuyPrice.value,
-        "buyDate": new Date().toISOString().split('T')[0]
-    }
-    console.log( newShare );
-    var postShare = new AjaxRequest( "http://localhost:3001/api/portfolio" );
-    console.log( "this.refresh in addShares", this );
-    postShare.post( newShare, this.refresh );
-
-}
-
-module.exports = DetailsPage;
-
-/***/ }),
-
-/***/ 466:
-/***/ (function(module, exports, __webpack_require__) {
-
-var PieChart = __webpack_require__( 2);
-var Valuation = __webpack_require__( 467);
-
-var OverviewPage = function( refresh ) {
-    this.data = null;
-    this.refresh = refresh;
-
-    //grab dom elements
-    pieChartContainer = document.querySelector( '#pieChart' );
-    pieChart = new PieChart( this.refresh, pieChartContainer );
-    totalValuation = document.querySelector( '#valuation');
-    valuation = new Valuation (this.refresh, totalValuation);
-}
-
-OverviewPage.prototype.render = function(){
-    pieChart.setData( this.data );
-    pieChart.render();
-    valuation.setData( this.data);
-    valuation.render();
-}
-
-OverviewPage.prototype.setData = function( data ){
-    this.data = data;
-}
-
-module.exports = OverviewPage;
-
-/***/ }),
-
-/***/ 467:
-/***/ (function(module, exports) {
-
-var Valuation = function (refresh, container) {
-    this.data = null;
-    this.refresh = refresh;
-    this.container = container
-}
-
-Valuation.prototype.setData = function ( data ){
-    this.data = data;
-}
-
-Valuation.prototype.render = function() {
-    var totalValuation = 0;
-    var stockData = this.data;
-    
-    stockData.forEach(function(stock) {
-        totalValuation += (stock.quantity * stock.price);
-    });
-
-    totalValuation = totalValuation/100;
-    
-    totalValuation = totalValuation.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
-    this.container.innerText = "Total Valuation: $" + (totalValuation); 
-}
-
-module.exports = Valuation;
-
-/***/ }),
-
-/***/ 5:
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ (function(module, exports) {
 
 var ScatterChart = function( refresh, container ){
@@ -643,7 +518,128 @@ module.exports = ScatterChart;
 
 
 
-/***/ })
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/******/ });
+var PortfolioView = __webpack_require__(1);
+var ScatterChart = __webpack_require__(6);
+var AjaxRequest = __webpack_require__( 3 );
+
+var DetailsPage = function( refresh ) {
+    this.data = null;
+    this.refresh = refresh;
+
+    //grab dom elements
+    portfolioViewSelect = document.querySelector('#portfolio-list')
+    portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
+    scatterChartContainer = document.querySelector( '#scatterChart')
+    scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+
+
+    var addShareButton = document.querySelector( "#add-share" );
+    addShareButton.addEventListener( "click", this.addShares.bind(this) );
+
+}
+
+DetailsPage.prototype.render = function(){
+    portfolioView.setData( this.data );
+    scatterChart.setData( this.data );
+    portfolioView.render();
+    scatterChart.render();
+}
+
+DetailsPage.prototype.setData = function( data ){
+    this.data = data;
+}
+
+DetailsPage.prototype.addShares = function(){
+    var newName = document.querySelector( "#new-name" );
+    var newEpicText = document.querySelector( "#new-epic" );
+    var newNumber = document.querySelector( "#new-number" );
+    var newBuyPrice = document.querySelector( "#new-buy-price" );
+    var newShare = {
+        "name": newName.value,
+        "epic": newEpicText.value,
+        "price": newBuyPrice.value,
+        "quantity": newNumber.value,
+        "buyPrice": newBuyPrice.value,
+        "buyDate": new Date().toISOString().split('T')[0]
+    }
+    console.log( newShare );
+    var postShare = new AjaxRequest( "http://localhost:3001/api/portfolio" );
+    console.log( "this.refresh in addShares", this );
+    postShare.post( newShare, this.refresh );
+
+}
+
+module.exports = DetailsPage;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var PieChart = __webpack_require__( 2);
+var Valuation = __webpack_require__( 12);
+
+var OverviewPage = function( refresh ) {
+    this.data = null;
+    this.refresh = refresh;
+
+    //grab dom elements
+    pieChartContainer = document.querySelector( '#pieChart' );
+    pieChart = new PieChart( this.refresh, pieChartContainer );
+    totalValuation = document.querySelector( '#valuation');
+    valuation = new Valuation (this.refresh, totalValuation);
+}
+
+OverviewPage.prototype.render = function(){
+    pieChart.setData( this.data );
+    pieChart.render();
+    valuation.setData( this.data);
+    valuation.render();
+}
+
+OverviewPage.prototype.setData = function( data ){
+    this.data = data;
+}
+
+module.exports = OverviewPage;
+
+/***/ }),
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ (function(module, exports) {
+
+var Valuation = function (refresh, container) {
+    this.data = null;
+    this.refresh = refresh;
+    this.container = container
+}
+
+Valuation.prototype.setData = function ( data ){
+    this.data = data;
+}
+
+Valuation.prototype.render = function() {
+    var totalValuation = 0;
+    var stockData = this.data;
+    
+    stockData.forEach(function(stock) {
+        totalValuation += (stock.quantity * stock.price);
+    });
+
+    totalValuation = totalValuation/100;
+    
+    totalValuation = totalValuation.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+    this.container.innerText = "Total Valuation: $" + (totalValuation); 
+}
+
+module.exports = Valuation;
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=bundle.js.map
