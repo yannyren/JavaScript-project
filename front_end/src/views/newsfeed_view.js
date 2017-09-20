@@ -26,34 +26,43 @@ NewsFeedView.prototype.getNewsData = function(){
     var SYMBOL = symbolPrefix + symbolSuffix;
     googleFinance.companyNews( {symbol: SYMBOL}, function (err, news) {
     if (err) { throw err; }
-    if (news[0]) {
+    // if (news[0]) {
         this.render( news );
-    } 
+    // } 
     }.bind( this ));
 }
 
 NewsFeedView.prototype.render = function( newsData ){
-    newsData.reverse(); 
     //erase anything in domElement already
     while( this.domElement.firstChild ) {
         this.domElement.removeChild( this.domElement.firstChild );
     }
-    for (var i = 0; i < newsData.length; i++) {
+
+    if ( !newsData[0] ){
         var articleBody = document.createElement('article');
-        articleBody.setAttribute("id", "article-body");
-        var date = document.createElement('p');
-        var summary = document.createElement('p');
-        var link = document.createElement('a');
-        link.href = newsData[i].link;
-        link.target = "_blank";
-        summary.innerText = newsData[i].summary;
-        var linkText = document.createTextNode(newsData[i].link);
-        var lineBreak = document.createElement('hr');
-        link.appendChild(linkText);
-        articleBody.appendChild(summary);
-        articleBody.appendChild(link);
-        articleBody.appendChild(lineBreak);
+        articleBody.innerText = "No recent news."
         this.domElement.appendChild(articleBody);
+    } else {
+
+    newsData.reverse(); 
+    
+        for (var i = 0; i < newsData.length; i++) {
+            var articleBody = document.createElement('article');
+            articleBody.setAttribute("id", "article-body");
+            var date = document.createElement('p');
+            var summary = document.createElement('p');
+            var link = document.createElement('a');
+            link.href = newsData[i].link;
+            link.target = "_blank";
+            summary.innerText = newsData[i].summary;
+            var linkText = document.createTextNode(newsData[i].link);
+            var lineBreak = document.createElement('hr');
+            link.appendChild(linkText);
+            articleBody.appendChild(summary);
+            articleBody.appendChild(link);
+            articleBody.appendChild(lineBreak);
+            this.domElement.appendChild(articleBody);
+        }
     }
 }
 
