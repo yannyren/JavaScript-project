@@ -15,12 +15,12 @@ db.portfolio.insert(
       "buyDate":"2014-11-15"
     },
     {
-      "name": "Blackrock",
-      "epic":"BLK",
+      "name": "Ebay",
+      "epic":"EBAY",
       "price": 100.00,
       "quantity": 1000,
       "buyPrice": 60.00,
-      "lastUpdated": "2017-09-20",
+      "lastUpdated": "2017-09-18",
       "pastCloseOfDayPrices": [72.00, 49.00, 83.00, 85.00, 88.00, 88.00, 110.00],
       "buyDate":"2014-11-15"
     },
@@ -34,5 +34,25 @@ db.portfolio.insert(
       "pastCloseOfDayPrices": [42.00, 79.00, 63.00, 65.00, 48.00, 38.00, 210.00],
       "buyDate":"2014-11-15"
     },
+    {
+      "name": "AV Homes",
+      "epic":"AVHI",
+      "price": 110.00,
+      "quantity": 1000,
+      "buyPrice": 60.00,
+      "lastUpdated": "2017-09-10",
+      "pastCloseOfDayPrices": [42.00, 79.00, 63.00, 65.00, 48.00, 38.00, 210.00],
+      "buyDate":"2014-11-15"
+    },
+    {
+      "name": "Bank of California",
+      "epic":"BANC",
+      "price": 110.00,
+      "quantity": 1000,
+      "buyPrice": 60.00,
+      "lastUpdated": "2017-09-10",
+      "pastCloseOfDayPrices": [42.00, 79.00, 63.00, 65.00, 48.00, 38.00, 210.00],
+      "buyDate":"2014-11-15"
+    }
   ]
 )
