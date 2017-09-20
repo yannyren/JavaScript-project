@@ -10,6 +10,7 @@ AjaxRequest.prototype.get = function(callback) {
     request.addEventListener('load', function() {
         if (request.status !== 200) return;
         var jsonString = request.responseText;
+        // console.log(jsonString);
         this.data = JSON.parse(jsonString);
         console.log( 'From ajaxrequest', this.data );
         callback(this.data);
