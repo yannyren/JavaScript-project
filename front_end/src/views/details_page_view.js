@@ -62,4 +62,10 @@ DetailsPage.prototype.addShares = function(){
 
 }
 
+// DetailsPage.prototype.removeShares = function(){
+//     portfolioViewSelect.addEventListener( "change", function( event ){
+//         var itemToRemove = event.target.value;
+//     })
+// }
+
 module.exports = DetailsPage;
