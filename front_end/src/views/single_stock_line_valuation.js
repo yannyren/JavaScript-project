@@ -13,6 +13,10 @@ SingleLineValuation.prototype.render = function() {
     var stockData = this.data;
     var container = this.container;
     
+    while ( container.firstChild ){
+        container.removeChild( container.firstChild );
+    }
+
     stockData.forEach(function(stock) {
         var row = document.createElement('tr');
 
