@@ -20,7 +20,6 @@ NewsFeedView.prototype.setData = function( data ){
     this.data = data;
 }
 
-
 // sometimes needs to refresh twice to get a handle on changes, callback issue?
 NewsFeedView.prototype.getNewsData = function(){
     var symbolSuffix = this.data[this.series].epic
@@ -34,10 +33,8 @@ NewsFeedView.prototype.getNewsData = function(){
     }.bind( this ));
 }
 
-
-
 NewsFeedView.prototype.render = function( newsData ){
-   
+    newsData.reverse();
     console.log("News Data", newsData);   
     //erase anything in domElement already
     while( this.domElement.firstChild ) {
@@ -53,7 +50,6 @@ NewsFeedView.prototype.render = function( newsData ){
         link.innerText = newsData[i].link;
         articleBody.appendChild(summary);
         articleBody.appendChild(link);
-        console.log("this.domElement: ", this.domElement);
         this.domElement.appendChild(articleBody);
     }
 }
