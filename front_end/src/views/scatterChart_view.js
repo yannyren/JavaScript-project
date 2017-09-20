@@ -101,14 +101,6 @@ ScatterChart.prototype.render = function(){
    },
    legend: {
        enabled: false
-    //    layout: 'vertical',
-    //    align: 'left',
-    //    verticalAlign: 'top',
-    //    x: 50,
-    //    y: 300,
-    //    floating: true,
-    //    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
-    //    borderWidth: 0
    },
    plotOptions: {
        scatter: {
