@@ -23,7 +23,9 @@ ShareUpdater.prototype.update = function( share, callback ){
   httpRequest.get( function( shareData ){
     
     console.log("share before", share );
-    
+    console.log( "thisURL", this.url);
+    console.log( "shareData", shareData);
+
     var dates = Object.keys( shareData[ "Time Series (Daily)" ]);
     share.lastUpdated = new Date().toISOString();
     dates.sort().reverse();
