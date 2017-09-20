@@ -31,26 +31,46 @@
           
      </nav>
 
-
+        <!-- <h1>Over view page</h1> -->
+        
     <div id="overviewpage" class="pageview">
-            <div id="pieChart"></div>
-            <!-- <div id="valuation"></div>     -->
-            <div id = "valuation">Total Valuation:</div>
-            <div id="total-chart"></div>
-            <p id="total-gradient"></p>
-            Next 7 days valuation predictions ($):
-            <p id="total-prediction"></p>
-            <div style="overflow-x:auto;">
-            <table id="singlelinevaluations" style="width:100%">
-                <tr>
-                  <th>Stock</th>
-                  <th>Epic</th> 
-                  <th>Quantity</th>
-                  <th>Price(Cents)</th>
-                  <th>Holding Value</th>
-              </table>
-            </div>
+
+        <div id="detailpage-top-half">
+
+            <section id="piechart-total">
+                <div id="pieChart"></div>
+                <!-- <div id="valuation"></div>     -->
+                <div id = "valuation">Total Valuation:</div>
+            </section>
+
+            <section id="total-chart-gradient">
+                <div id="total-chart"></div>
+                <div id="overview-prediction">
+                    <p id="total-gradient"></p>
+                    Next 7 days valuation predictions ($):
+                    <p id="total-prediction"></p>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="detailpage-bottom-half">
+            <section style="overflow-x:auto;">
+                <table id="singlelinevaluations" style="width:100%">
+                    <tr>
+                    <th>Stock</th>
+                    <th>Epic</th> 
+                    <th>Quantity</th>
+                    <th>Price(Cents)</th>
+                    <th>Holding Value</th>
+                </table>
+            </section>
+        </div>
+
     </div>
+
+
+
        
     <div id="detailspage" class="pageview">
 
@@ -65,7 +85,7 @@
                 <input type="text" id="new-number" class="buy-share-input-box">
                 Buy Price:
                 <input type="text" id="new-buy-price" class="buy-share-input-box">
-                <button id="add-share" type="button">Buy</button>
+                <button id="add-share" type="button">Add</button>
         </section>
 
         <section class="list-scatterchart-news-section">
