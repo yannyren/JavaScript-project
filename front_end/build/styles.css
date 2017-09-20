@@ -1,4 +1,4 @@
-html {
+html * {
     font-family: Georgia, Times New Roman, Times, serif;
 }
 
@@ -192,7 +192,7 @@ tr:hover {background-color: #f5f5f5}
 
 .list-scatterchart-news-section {
     display: inline-flex;
-    background-color: rgba(217, 219, 213, 0.87);
+    background-color: rgba(245, 246, 242, 0.87);
     width: 100%;
     margin: 0px 0px 10px 0px;
     min-height: 400px
@@ -202,21 +202,21 @@ tr:hover {background-color: #f5f5f5}
     display: block;
     width:20%;
     padding: 0px;
-    margin: 0px;
+    margin-right: 10px;
     /* height: 100%; */
 }
 
 #holdings-list-title {
     margin: 0px, 0px, 0px,0px;
     padding: 0px, 0px, 0px, 0px;
-    background-color: yellowgreen;
+    background-color: #C4E284;
 }
 
 
 #portfolio-list {
     width: 100%;
     font-size: 14px;
-    height: 88%;
+    height: 82%;
     margin: 0px;
     background: rgba(238, 243, 242, 0.95);
 }
@@ -226,7 +226,8 @@ tr:hover {background-color: #f5f5f5}
     height: 100%;
     /* background:blueviolet; */
     padding: 15px;
-    background: #9AC4A3;
+    /* background: #C4E284; */
+    margin-right: 10px;
 
 }
 
@@ -245,18 +246,20 @@ tr:hover {background-color: #f5f5f5}
 #news-title {
     margin: 0px, 0px, 0px,0px;
     padding: 0px, 0px, 0px, 0px;
-    background: yellowgreen;
+    background: #C4E284;
+    padding-left: 10px
 }
 
 #news-feed{
-    background-color: #DEDEEE;
+    /* background-color: #DEDEEE; */
+    background: rgba(238, 243, 242, 0.95);
     height: 450px;
     width:100%;
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: scroll;
     margin: 0px;
-    padding: 0px;
+    padding-left: 10px;
 }
 
 
