@@ -2,6 +2,8 @@ var PortfolioView = require('./portfolio_view');
 var ScatterChart = require('./scatterChart_view');
 var AjaxRequest = require( '../services/ajax_request.js' );
 
+var NewsRequest = require( '../services/news_request.js' );
+
 var DetailsPage = function( refresh ) {
     this.data = null;
     this.refresh = refresh;
@@ -11,6 +13,9 @@ var DetailsPage = function( refresh ) {
     portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
     scatterChartContainer = document.querySelector( '#scatterChart')
     scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+    
+    newsViewList = document.querySelector('#news-feed');
+    newsView = new NewsRequest( this.refresh, newsViewList );
 
 
     var addShareButton = document.querySelector( "#add-share" );

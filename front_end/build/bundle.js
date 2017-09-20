@@ -269,7 +269,7 @@ var AjaxRequest = function(url) {
 AjaxRequest.prototype.get = function(callback) {
     var request = new XMLHttpRequest();
     request.open('GET', this.url);
-    console.log( "this.url", this.url );
+    // console.log( "this.url", this.url );
     request.addEventListener('load', function() {
         if (request.status !== 200) return;
         var jsonString = request.responseText;
@@ -411,6 +411,8 @@ var PortfolioView = __webpack_require__(1);
 var ScatterChart = __webpack_require__(6);
 var AjaxRequest = __webpack_require__( 3 );
 
+var NewsRequest = __webpack_require__( 14 );
+
 var DetailsPage = function( refresh ) {
     this.data = null;
     this.refresh = refresh;
@@ -420,6 +422,9 @@ var DetailsPage = function( refresh ) {
     portfolioView = new PortfolioView( this.refresh, portfolioViewSelect );
     scatterChartContainer = document.querySelector( '#scatterChart')
     scatterChart = new ScatterChart( this.refresh, scatterChartContainer );
+    
+    newsViewList = document.querySelector('#news-feed');
+    newsView = new NewsRequest( this.refresh, newsViewList );
 
 
     var addShareButton = document.querySelector( "#add-share" );
@@ -524,6 +529,30 @@ Valuation.prototype.render = function() {
 }
 
 module.exports = Valuation;
+
+/***/ }),
+/* 13 */,
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var AjaxRequest = __webpack_require__( 3 );
+
+var NewsRequest = function( refresh, domElement ){
+    newsUrl = "http://finance.yahoo.com/rss/headline?s=yhoo";
+    this.data = null;
+    this.refresh = refresh;
+    this.domElement = domElement;
+}
+
+NewsRequest.prototype.setData = function( data ){
+    this.data = data;
+}
+
+NewsRequest.prototype.pullNewsRequest = function(){
+    listOfNews = new AjaxRequest ( newsUrl );
+}
+
+module.exports = NewsRequest;
 
 /***/ })
 /******/ ]);
