@@ -27,6 +27,9 @@ var DetailsPage = function( refresh ) {
     var addShareButton = document.querySelector( "#add-share" );
     addShareButton.addEventListener( "click", this.addShares.bind(this) );
 
+    var deleteButton = document.querySelector( '#remove-share' )
+    deleteButton.addEventListener( "click", this.removeShare.bind( this ) );
+
 }
 
 DetailsPage.prototype.render = function(){
@@ -62,6 +65,16 @@ DetailsPage.prototype.addShares = function(){
     console.log( "this.refresh in addShares", this );
     postShare.post( newShare, this.refresh );
 
+}
+
+DetailsPage.prototype.removeShare = function(){
+    var shareIndex = portfolioViewSelect.value;
+    var shareIDURL = "http://localhost:3001/api/portfolio/";
+    scatterChart.setSeries( shareIndex - 1 );
+    newsView.setSeries( shareIndex - 1 );
+    shareIDURL += this.data[shareIndex]["_id"];
+    var deleteShare = new AjaxRequest( shareIDURL );
+    deleteShare.delete( this.refresh );
 }
 
 // DetailsPage.prototype.removeShares = function(){

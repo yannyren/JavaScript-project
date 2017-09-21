@@ -30,10 +30,12 @@ ScatterChart.showFit = function( data ){
     gradientText.innerText = "Rate of change= " + fitCoeffs[0].toFixed(2).toString() + 
     " cents/day";
     predictionText.innerText = "";
-    for ( var day = 1; day <= 7; day++){
+    for ( var day = 1; day <= 6; day++){
         var dayPrice = fitCoeffs[0] * day + fitCoeffs[1];
-        predictionText.innerText += ( dayPrice.toFixed(1).toString() + ", " );
+        predictionText.innerText += dayPrice.toFixed(1).toString() + " --> ";
     }
+    var dayPrice = fitCoeffs[0] * 7 + fitCoeffs[1];
+    predictionText.innerText += dayPrice.toFixed(1).toString(); 
 }
 
 ScatterChart.prototype.render = function(){

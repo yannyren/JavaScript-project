@@ -32,4 +32,14 @@ AjaxRequest.prototype.post = function(sendData, callback) {
     request.send(JSON.stringify(sendData));
 }
 
+AjaxRequest.prototype.delete = function( callback ){
+    var request = new XMLHttpRequest();
+    request.open("DELETE", this.url);
+    request.addEventListener('load', function(){
+        if (request.status!==200) return;
+        callback();
+    }.bind(this));
+    request.send();
+}
+
 module.exports = AjaxRequest;

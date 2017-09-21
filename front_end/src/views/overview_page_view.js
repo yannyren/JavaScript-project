@@ -24,14 +24,16 @@ OverviewPage.prototype.render = function(){
     pieChart.render();
     valuation.setData( this.data);
     valuation.render();
-    totalChart.setData( this.data );
-    totalChart.render();
     singleLineValuesData.setData(this.data);
     singleLineValuesData.render();
+    totalChart.setData( this.data );
+    totalChart.render();
+    console.log( "Got to here" );
 }
 
 OverviewPage.prototype.setData = function( data ){
     this.data = data;
+    console.log( "SetData from OverviewPage", this.data );
 }
 
 module.exports = OverviewPage;
