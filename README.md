@@ -1,0 +1,2 @@
+Full stack JS webapp tracking the performance of a user’s share portfolio on the stock market. 
+Data was persisted in a Mongo DB on the back end, and updated when required by calls to an external market tracking API. Company news was brought in from the GoogleFinance RSS feed. Simple predictive analysis of stock prices was also implemented. An Agile development methodology was adopted throughout, with daily stand-ups, backlog charts, sprint plans and retrospectives, using Git and GitHub for collaborative development.
