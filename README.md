@@ -33,3 +33,9 @@ COULD
 WOULD
 1. Live Trading
 2. Connection with Bank Account
+
+--------------------------------------------------------------------------------------------------------------
+
+Note:
+At the end of the project week, the "must" and "should" parts are done.
+Next step is to work on "could" and "would" in due course.
